@@ -9,7 +9,9 @@ public class Trap
 {
 	public static double area( int base1, int base2, int height )
 	{
-		double trapArea = (base1 + base2) / 2 * height;
+		double sum = (double) base1 + base2;
+		//System.out.println(sum);
+		double trapArea =  sum / 2 * (double) height;
 		return trapArea;
 	}
 }
