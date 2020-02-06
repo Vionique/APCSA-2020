@@ -37,14 +37,11 @@ public class MPHRunner
 			
 		}
 		
-		//input your own data
+		//takes user data input
 		else if ((temp.contentEquals("user")) == true) {
 			userInput();
-		}
-		
-		
-		
-	}
+		}	
+	}//end main method
 	
 	public static void userInput() {
 		Scanner keyboard = new Scanner(in);
@@ -60,6 +57,8 @@ public class MPHRunner
 		MilesPerHour test = new MilesPerHour(dist, hrs, mins);
 		test.calcMPH();
 		
+		
+		//print user results
 		System.out.println("Type \"0\" to print using the toString method "
 				+ "or type \"1\" to print using the print method");
 		int ans = keyboard.nextInt();
@@ -70,7 +69,6 @@ public class MPHRunner
 		else if (ans == 1) {
 			test.print();
 		}
-		
-	}
+	}//user Input
 	
 }

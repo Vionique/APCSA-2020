@@ -27,6 +27,7 @@ public class Distance
 	public Distance(int x1, int y1, int x2, int y2)
 	{
 		setCoordinates(x1, y1, x2, y2);
+		distance = 0.0;
 	}
 
 	//sets values for coordinate positions
@@ -45,7 +46,7 @@ public class Distance
 	{
 		int xDif = xOne - xTwo;
 		int yDif = yOne - yTwo;
-		distance = Math.sqrt(xDif*xDif + yDif *yDif);
+		distance = Math.sqrt(xDif*xDif + yDif * yDif);
 	}
 	
 	public double getDistance()
@@ -58,8 +59,6 @@ public class Distance
 		System.out.println("distance == " + distance);
 
 	}
-	
-	//complete print or the toString
 
 	public String toString()
 	{

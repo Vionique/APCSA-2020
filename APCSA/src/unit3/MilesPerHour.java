@@ -35,6 +35,7 @@ public class MilesPerHour
 		distance = dist;
 		hours = hrs;
 		minutes = mins;
+		mph = 0.0;
 	}
 	
 	//calculate mph

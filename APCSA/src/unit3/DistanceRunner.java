@@ -13,6 +13,8 @@ import static java.lang.Math.*;
 
 public class DistanceRunner
 {
+	//all methods print using toString for formatting issues, but a working print method is also present
+	
 	public static void main( String[] args )
 	{
 		Scanner scan1 = new Scanner(in);
@@ -35,12 +37,11 @@ public class DistanceRunner
 			System.out.println(test3);
 		}
 		
-		//input your own data
+		//takes user data input
 		else if ((temp.contentEquals("user")) == true) {
 			userInput();
 		}
-			
-	}
+	}//end main method
 	
 	public static void userInput() {
 		Scanner keyboard = new Scanner(in);
@@ -53,13 +54,15 @@ public class DistanceRunner
 		out.print("Enter X2 :: ");
 		int X2 = keyboard.nextInt();
 		
-		out.print("Enter y2 :: ");
+		out.print("Enter Y2 :: ");
 		int Y2 = keyboard.nextInt();
 
+		
+		//print user results
 		Distance test = new Distance(X1, Y1, X2, Y2);
 		test.calcDistance();
-		test.print();
-	}
+		System.out.println(test);
+	}//end userInput
 		
 	
 }
