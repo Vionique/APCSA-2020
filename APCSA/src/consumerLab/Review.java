@@ -72,7 +72,13 @@ public class Review {
       
       //add 'words' in the file to the string, separated by a single space
       while(input.hasNext()){
-        temp = temp + input.next() + " ";
+
+    	  String wordAdded = input.next();
+    	  if (!(Character.isLetterOrDigit(wordAdded.charAt(wordAdded.length() - 1))))
+      		temp = temp + wordAdded.substring(0, wordAdded.length() - 1) + " ";
+    	  else
+    		  temp = temp + wordAdded + " ";
+        	
       }
       input.close();
       
@@ -89,6 +95,7 @@ public class Review {
    */
   public static double sentimentVal( String word )
   {
+	
     try
     {
       return sentiment.get(word.toLowerCase());
@@ -97,6 +104,7 @@ public class Review {
     {
       return 0;
     }
+    
   }
   
   /**
@@ -153,13 +161,17 @@ public class Review {
   public static double totalSentiment(String filename)
   {
 	  String reviewText = textToString(filename);
+	  reviewText = reviewText + " blank ";
+	  // blank included for accurate calculations of totalSentiment
     // read in the file contents into a string using the textToString method with the filename
 
 	  double sentimentTotal = 0.0;
+	  
     // set up a sentimentTotal variable
 	  while (reviewText.indexOf(' ') != -1) {
 		  sentimentTotal += sentimentVal(reviewText.substring(0, reviewText.indexOf(' ')));
 		  reviewText = reviewText.substring(reviewText.indexOf(' ') + 1);
+		  
 	  }
 	  
     // loop through the file contents 
@@ -181,10 +193,21 @@ public class Review {
   */
   public static int starRating(String filename)
   {
+	  double reviewSentiment = totalSentiment(filename);
     // call the totalSentiment method with the fileName
 
     // determine number of stars between 0 and 4 based on totalSentiment value 
     int stars;
+    if (reviewSentiment >= 4)
+    	stars = 4;
+    else if (reviewSentiment >= 2)
+    	stars = 3;
+    else if (reviewSentiment >= 0)
+    	stars = 2;
+    else if (reviewSentiment >= -2)
+    	stars = 1;
+    else
+    	stars = 0;
     // write if statements here
 
 
@@ -192,4 +215,19 @@ public class Review {
     // return number of stars
     return stars; 
   }
+  
+  public static String fakeReview( String fileName) {
+	  String reviewText = textToString(fileName);
+	  String temp = "";
+	  int length = 0;
+	  while (reviewText.indexOf("*" != -1)) {
+		  temp = reviewText.substring(reviewText.indexOf("*"));
+		  length = temp.indexOf(" ");
+		  reviewText = reviewText.substring(0, reviewText.indexOf("*")); + randomAdjective() + temp.substring(length);
+	  }
+	  return reviewText;
+  }
+
+  
+  
 }
