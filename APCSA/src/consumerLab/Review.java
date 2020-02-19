@@ -219,11 +219,13 @@ public class Review {
   public static String fakeReview( String fileName) {
 	  String reviewText = textToString(fileName);
 	  String temp = "";
-	  int length = 0;
-	  while (reviewText.indexOf("*" != -1)) {
+	  int indexOne = 0;
+	  int indexTwo = 0;
+	  while (reviewText.indexOf("*" )!= -1) {
 		  temp = reviewText.substring(reviewText.indexOf("*"));
-		  length = temp.indexOf(" ");
-		  reviewText = reviewText.substring(0, reviewText.indexOf("*")); + randomAdjective() + temp.substring(length);
+		   indexOne = reviewText.indexOf("*");
+		  indexTwo = temp.indexOf(" ", indexOne);
+		  reviewText = reviewText.substring(0, indexOne) + randomAdjective() + " " + reviewText.substring(indexOne + indexTwo + 1);
 	  }
 	  return reviewText;
   }
