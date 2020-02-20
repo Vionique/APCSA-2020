@@ -1,2 +1,6 @@
 This was a *terrible restaurant! The pizza crust was too *chewy,
+<<<<<<< HEAD
 and I disliked the pasta. i would I would I would definitely not come back.
+=======
+and I disliked the pasta. I would I would I would definitely not come back.
+>>>>>>> branch 'master' of https://github.com/Vionique/APCSA-2020

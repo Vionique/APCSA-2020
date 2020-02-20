@@ -1,3 +1,4 @@
+
 package consumerLab;
 import java.util.Scanner;
 import java.io.File;
@@ -65,6 +66,7 @@ public class Review {
    * with words separated by a single space 
    */
   public static String textToStringPunctuation ( String fileName) {
+<<<<<<< HEAD
 	   
 		    String temp = "";
 		    try {
@@ -83,6 +85,27 @@ public class Review {
 		    //make sure to remove any additional space that may have been added at the end of the string.
 		    return temp.trim();
 		  }
+=======
+	    String temp = "";
+	    try {
+	      Scanner input = new Scanner(new File(fileName));
+	      
+	      //add 'words' in the file to the string, separated by a single space
+	      while(input.hasNext()){
+	        temp = temp + input.next() + " ";
+	      }
+	      input.close();
+	      
+	    }
+	    catch(Exception e){
+	      System.out.println("Unable to locate " + fileName);
+	    }
+	    //make sure to remove any additional space that may have been added at the end of the string.
+	    return temp.trim();
+  }
+  
+  //returns a string containing all of the text in fileName WITHOUT punctuation
+>>>>>>> branch 'master' of https://github.com/Vionique/APCSA-2020
   public static String textToString( String fileName )
   {  
     String temp = "";
@@ -235,7 +258,10 @@ public class Review {
     return stars; 
   }
   
+<<<<<<< HEAD
   
+=======
+>>>>>>> branch 'master' of https://github.com/Vionique/APCSA-2020
   public static String fakeReview( String fileName, String posNeg) {
 	  String reviewText = textToStringPunctuation(fileName);
 	  String temp = "";
