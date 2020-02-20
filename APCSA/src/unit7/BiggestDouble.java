@@ -36,7 +36,7 @@ public class BiggestDouble
 			biggest = three;
 		if (four > biggest)
 			biggest = four;
-		return biggest;
+		return biggest;  
 	}
 
 	public String toString()

@@ -45,7 +45,7 @@ public class RockPaperScissors
 		
 		if (playChoice.equals(compChoice)) {
 			winner = winner + "\n!Draw Game!";
-		}
+		}  
 		
 		else if ((playChoice + compChoice).equals("RS") || (playChoice + compChoice).equals("SR")) {
 			matchUp = "<<Rock Breaks Scissors>>!";

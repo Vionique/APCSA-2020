@@ -1,7 +1,7 @@
 package unit7;
 //(c) A+ Computer Science
 // www.apluscompsci.com
-//Name -  Gabby Kang
+//Name -  Gabby Kang   
 
 import static java.lang.System.*;
 
