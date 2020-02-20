@@ -64,6 +64,25 @@ public class Review {
    * returns a string containing all of the text in fileName (including punctuation), 
    * with words separated by a single space 
    */
+  public static String textToStringPunctuation ( String fileName) {
+	   
+		    String temp = "";
+		    try {
+		      Scanner input = new Scanner(new File(fileName));
+		      
+		      //add 'words' in the file to the string, separated by a single space
+		      while(input.hasNext()){
+		        temp = temp + input.next() + " ";
+		      }
+		      input.close();
+		      
+		    }
+		    catch(Exception e){
+		      System.out.println("Unable to locate " + fileName);
+		    }
+		    //make sure to remove any additional space that may have been added at the end of the string.
+		    return temp.trim();
+		  }
   public static String textToString( String fileName )
   {  
     String temp = "";
@@ -216,20 +235,41 @@ public class Review {
     return stars; 
   }
   
-  public static String fakeReview( String fileName) {
-	  String reviewText = textToString(fileName);
+  
+  public static String fakeReview( String fileName, String posNeg) {
+	  String reviewText = textToStringPunctuation(fileName);
 	  String temp = "";
 	  int indexOne = 0;
 	  int indexTwo = 0;
-	  while (reviewText.indexOf("*" )!= -1) {
-		  temp = reviewText.substring(reviewText.indexOf("*"));
-		   indexOne = reviewText.indexOf("*");
-		  indexTwo = temp.indexOf(" ", indexOne);
-		  reviewText = reviewText.substring(0, indexOne) + randomAdjective() + " " + reviewText.substring(indexOne + indexTwo + 1);
+	  if (posNeg.equals("positive")) {
+		  while (reviewText.indexOf("*" )!= -1) {
+			  temp = reviewText.substring(reviewText.indexOf("*"));
+			  indexOne = reviewText.indexOf("*");
+			  indexTwo = temp.indexOf(" ", indexOne);
+			  reviewText = reviewText.substring(0, indexOne) + randomPositiveAdj() + " " + reviewText.substring(indexOne + indexTwo + 1);
+		  }
 	  }
+	  
+	  else if (posNeg.equals("negative")) {
+		  while (reviewText.indexOf("*" )!= -1) {
+			  temp = reviewText.substring(reviewText.indexOf("*"));
+			  indexOne = reviewText.indexOf("*");
+			  indexTwo = temp.indexOf(" ", indexOne);
+			  reviewText = reviewText.substring(0, indexOne) + randomNegativeAdj() + " " + reviewText.substring(indexOne + indexTwo + 1);
+		  }
+	  }
+	  
+	  else {
+		  while (reviewText.indexOf("*" )!= -1) {
+			  temp = reviewText.substring(reviewText.indexOf("*"));
+			  indexOne = reviewText.indexOf("*");
+			  indexTwo = temp.indexOf(" ", indexOne);
+			  reviewText = reviewText.substring(0, indexOne) + randomAdjective() + " " + reviewText.substring(indexOne + indexTwo + 1);
+		  }
+	  }
+
 	  return reviewText;
   }
-
   
   
 }
