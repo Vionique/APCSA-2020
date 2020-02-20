@@ -1,5 +1,5 @@
 package unit7;
-//(c) A+ Computer Science  
+//(c) A+ Computer Science    
 // www.apluscompsci.com
 //Name -  Gabby Kang 
 
