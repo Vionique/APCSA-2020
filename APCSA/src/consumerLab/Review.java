@@ -1,4 +1,3 @@
-
 package consumerLab;
 import java.util.Scanner;
 import java.io.File;
@@ -6,7 +5,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Random;
 import java.io.*;
-
 /**
  * Class that contains helper methods for the Review Lab
  **/
@@ -66,36 +64,16 @@ public class Review {
    * with words separated by a single space 
    */
   public static String textToStringPunctuation ( String fileName) {
-<<<<<<< HEAD
-	   
-		    String temp = "";
-		    try {
-		      Scanner input = new Scanner(new File(fileName));
-		      
-		      //add 'words' in the file to the string, separated by a single space
-		      while(input.hasNext()){
-		        temp = temp + input.next() + " ";
-		      }
-		      input.close();
-		      
-		    }
-		    catch(Exception e){
-		      System.out.println("Unable to locate " + fileName);
-		    }
-		    //make sure to remove any additional space that may have been added at the end of the string.
-		    return temp.trim();
-		  }
-=======
 	    String temp = "";
 	    try {
 	      Scanner input = new Scanner(new File(fileName));
-	      
+
 	      //add 'words' in the file to the string, separated by a single space
 	      while(input.hasNext()){
 	        temp = temp + input.next() + " ";
 	      }
 	      input.close();
-	      
+
 	    }
 	    catch(Exception e){
 	      System.out.println("Unable to locate " + fileName);
@@ -103,9 +81,8 @@ public class Review {
 	    //make sure to remove any additional space that may have been added at the end of the string.
 	    return temp.trim();
   }
-  
+
   //returns a string containing all of the text in fileName WITHOUT punctuation
->>>>>>> branch 'master' of https://github.com/Vionique/APCSA-2020
   public static String textToString( String fileName )
   {  
     String temp = "";
@@ -114,7 +91,6 @@ public class Review {
       
       //add 'words' in the file to the string, separated by a single space
       while(input.hasNext()){
-
     	  String wordAdded = input.next();
     	  if (!(Character.isLetterOrDigit(wordAdded.charAt(wordAdded.length() - 1))))
       		temp = temp + wordAdded.substring(0, wordAdded.length() - 1) + " ";
@@ -196,7 +172,6 @@ public class Review {
       return randomNegativeAdj();
     }
   }
-
 /** Activity 2: totalSentiment()
   * Write the code to total up the sentimentVals of each word in a review.
  */
@@ -206,7 +181,6 @@ public class Review {
 	  reviewText = reviewText + " blank ";
 	  // blank included for accurate calculations of totalSentiment
     // read in the file contents into a string using the textToString method with the filename
-
 	  double sentimentTotal = 0.0;
 	  
     // set up a sentimentTotal variable
@@ -217,19 +191,13 @@ public class Review {
 	  }
 	  
     // loop through the file contents 
-
        // find each word
        // add in its sentimentVal
        // set the file contents to start after this word
    
    
-
-
-
    return sentimentTotal; 
   }
-
-
   /** Activity 2 starRating method
      Write the starRating method here which returns the number of stars for the review based on its totalSentiment.
   */
@@ -237,7 +205,6 @@ public class Review {
   {
 	  double reviewSentiment = totalSentiment(filename);
     // call the totalSentiment method with the fileName
-
     // determine number of stars between 0 and 4 based on totalSentiment value 
     int stars;
     if (reviewSentiment >= 4)
@@ -251,51 +218,54 @@ public class Review {
     else
     	stars = 0;
     // write if statements here
-
-
   
     // return number of stars
     return stars; 
   }
-  
-<<<<<<< HEAD
-  
-=======
->>>>>>> branch 'master' of https://github.com/Vionique/APCSA-2020
+
   public static String fakeReview( String fileName, String posNeg) {
 	  String reviewText = textToStringPunctuation(fileName);
+	  String originalText = reviewText;
 	  String temp = "";
 	  int indexOne = 0;
 	  int indexTwo = 0;
-	  if (posNeg.equals("positive")) {
-		  while (reviewText.indexOf("*" )!= -1) {
+	  while (reviewText.indexOf("*" )!= -1) {
 			  temp = reviewText.substring(reviewText.indexOf("*"));
-			  indexOne = reviewText.indexOf("*");
-			  indexTwo = temp.indexOf(" ", indexOne);
-			  reviewText = reviewText.substring(0, indexOne) + randomPositiveAdj() + " " + reviewText.substring(indexOne + indexTwo + 1);
-		  }
-	  }
-	  
-	  else if (posNeg.equals("negative")) {
-		  while (reviewText.indexOf("*" )!= -1) {
-			  temp = reviewText.substring(reviewText.indexOf("*"));
-			  indexOne = reviewText.indexOf("*");
-			  indexTwo = temp.indexOf(" ", indexOne);
-			  reviewText = reviewText.substring(0, indexOne) + randomNegativeAdj() + " " + reviewText.substring(indexOne + indexTwo + 1);
-		  }
-	  }
-	  
-	  else {
-		  while (reviewText.indexOf("*" )!= -1) {
-			  temp = reviewText.substring(reviewText.indexOf("*"));
-			  indexOne = reviewText.indexOf("*");
-			  indexTwo = temp.indexOf(" ", indexOne);
-			  reviewText = reviewText.substring(0, indexOne) + randomAdjective() + " " + reviewText.substring(indexOne + indexTwo + 1);
-		  }
-	  }
+	
+		  if (posNeg.equals("positive")) {
+			  while (reviewText.indexOf("*" )!= -1) {
 
+				  indexOne = reviewText.indexOf("*");
+				  indexTwo = reviewText.indexOf(" ", indexOne);
+				  temp = randomPositiveAdj();
+				  reviewText = reviewText.substring(0, indexOne) + temp + " " + reviewText.substring(indexTwo);
+			  }
+		  }
+	
+		  else if (posNeg.equals("negative")) {
+			  while (reviewText.indexOf("*" )!= -1) {
+				  indexOne = reviewText.indexOf("*");
+				  indexTwo = reviewText.indexOf(" ", indexOne);
+				  temp = randomNegativeAdj();
+				  reviewText = reviewText.substring(0, indexOne) + temp + " " + reviewText.substring(indexTwo);
+			  }
+			  
+		  }
+	
+		  else {
+			  while (reviewText.indexOf("*" )!= -1) {
+				  indexOne = reviewText.indexOf("*");
+				  indexTwo = reviewText.indexOf(" ", indexOne);
+				  temp = randomAdjective();
+				  reviewText = reviewText.substring(0, indexOne) + temp + " " + reviewText.substring(indexTwo );
+			  }
+		  }
+
+	  
+	  }
 	  return reviewText;
   }
-  
-  
 }
+
+  
+  
