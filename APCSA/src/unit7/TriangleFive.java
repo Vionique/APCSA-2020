@@ -35,33 +35,33 @@ public class TriangleFive
 	public String toString()
 	{
 		String output="";
-		/*for (int k = letter; k <= letter + amount; k++){
-			for (int j = amount; j>=1 ;j--) {
-				for (int i = j; i >= 1; i--) {
-					output = output + (char) k;
+	
+		for (int i = 1; i <= amount; i++) {
+			int count = 0;
+			for (int j = amount; j >= i; j--) {
+				
+				int temp = (int) letter;
+				temp = temp + count;
+				if (temp > 90) {
+					temp = 64 + temp % 90;
 				}
-				output = output + " ";
-			} 			
-			output = output + "\n";
-		}
-		
-		for (int j = amount; j>=1 ;j--) {
-			for (int i = j; i >= 1; i--) {
-				for (int k = letter; k <= letter + amount; k++) {
-						output = output + (char) k;
+				for  (int k = 0; k < j; k++){
+	
+					output = output + (char) (temp);
+					
+					
 				}
+				count ++;
+				
+				
 				output = output + " ";
 			}
-			
 			output = output + "\n";
-		}// gives correct amount of rows
-		*/
 		
-		for (int i = 4; i >= 1; i --) {
-			output = output + "* ";
+		
 		}
+
 		return output;
 	}
 }
-
 
