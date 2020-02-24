@@ -35,7 +35,9 @@ public class TriangleFive
 	public String toString()
 	{
 		String output="";
-	
+					
+					
+
 		for (int i = 1; i <= amount; i++) {
 			int count = 0;
 			for (int j = amount; j >= i; j--) {
