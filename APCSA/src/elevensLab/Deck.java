@@ -74,8 +74,15 @@ public class Deck{
    //make a dealCard() method that returns the top card
    
    public void shuffle() {
-	   Collections.shuffle(cards);
-	   setSize(cards.size());
+	   Card temp = new Card();
+		
+	   for (int k = (cards.size() - 1); k >= 1; k--) {
+		   temp = cards.get(k);
+		   int r = (int) (Math.random() * (k + 1));
+		   cards.set(k, cards.get(r)); 
+		   cards.set(r, temp);
+		}
+	   size = cards.size();
    }
    //write a shuffle() method
    	//use Colletions.shuffle
