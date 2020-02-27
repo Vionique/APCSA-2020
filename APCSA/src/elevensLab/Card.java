@@ -18,20 +18,21 @@ public class Card
 	public  Card() {
 		setSuit("SPADES");
 		setFace(0);
-		setPoints();
+		setPointsCalc();
 	}
 	
 	public Card(String suits, int faces) {
 		setSuit(suits);
 		setFace(faces);
-		setPoints();
+		setPointsCalc();
+		
 	}
 	
 	public Card (String ranks, String suits, int points) {
 		setSuit(suits);
 		setRank(ranks);
-		setPoints();
-		//By technicality, Card constuctor doesn't need to take in int points
+		setPointsGiven(points);
+	
 	}
 
 	// modifiers
@@ -51,12 +52,17 @@ public class Card
 		face = faces;
 		rank = FACES[face];
 	}
-	public void setPoints() {
+	
+	//setPoints uses suits and faces to calculate a point value
+	public void setPointsCalc() {
 		if (face > 10)
 			pointVal = 10;
 		else 
 			pointVal = face;
 		
+	}
+	public void setPointsGiven(int p) {
+		pointVal = p;
 	}
 
 	

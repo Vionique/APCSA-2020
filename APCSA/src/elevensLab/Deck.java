@@ -19,26 +19,32 @@ public class Deck{
 
 	public Deck() {
 		cards = new ArrayList<Card>();
+		top = 51;
 		
 		for (int i = 0; i < SUITS.length; i++) {
 			for (int j = 1; j <= 13; j++) {
-				Card temp = new Card (SUITS[i], j);
-				cards.add(temp);
+				/*Card temp = new Card (SUITS[i], j);
+				cards.add(temp);*/
+				
+				cards.add(new Card(SUITS[i], j));
 			}
 		}
+		
 		setSize(cards.size());
-		//shuffle();
+
 	}
 	
 	public Deck(String[] ranks, String[] suits, int[] points) {
 		cards = new ArrayList<Card>();
 		for (int i = 0; i < ranks.length; i++) {
-			Card temp = new Card(ranks[i], suits[i], points[i]);
-			cards.add(temp);
+			/*Card temp = new Card(ranks[i], suits[i], points[i]);
+			cards.add(temp);*/
+			
+			cards.add(new Card(ranks[i], suits[i], points[i]));
 		}
 		
 		setSize(cards.size());
-		//shuffle();
+
 	}
    //make a Deck constructor
    	//refer cards to new ArrayList
