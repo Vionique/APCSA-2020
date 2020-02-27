@@ -17,6 +17,7 @@ public class ListOddToEven
 		for (int i = 0; i < ray.size();i++){
 			if (ray.get(i) % 2 == 1) {
 				oddIndex = i;
+				
 				break;
 			}				
 		}
@@ -24,11 +25,21 @@ public class ListOddToEven
 		for (int j = ray.size() - 1; j >= 0; j--) {
 			if (ray.get(j) % 2 == 0) {
 				evenIndex = j;
+			
 				break;
 			}
 		}
 		if (oddIndex == 0 && evenIndex == 0)
 			return -1;
-		return oddIndex - evenIndex;
+
+		return evenIndex - oddIndex;
+	}
+	
+	public static ArrayList<Integer> arrToList(int[] a) {
+		ArrayList<Integer> temp = new ArrayList<Integer>();
+		for (int i = 0; i < a.length; i++) {
+			temp.add(a[i]);
+		}
+		return temp;
 	}
 }
