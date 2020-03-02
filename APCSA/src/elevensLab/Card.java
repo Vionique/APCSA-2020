@@ -89,6 +89,15 @@ public class Card
 		return pointVal;
 	}
 
+	
+	public boolean matches(Card otherCard) {
+		if ((this.getSuit().equals(otherCard.getSuit()) && (this.getRank().equals(otherCard.getRank())) 
+			&& this.getPoints()==(otherCard.getPoints()))){
+				return true;
+			}
+		else 
+			return false;
+	}
   	//toString
 
 	public String toString() {

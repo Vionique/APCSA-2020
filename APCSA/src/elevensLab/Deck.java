@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-//make a Deck class
+//make a Deck class 
 public class Deck{
 	public static final int NUMCARDS = 52;
 	public static String[] SUITS = "CLUBS HEARTS DIAMONDS SPADES".split(" ");
@@ -36,14 +36,22 @@ public class Deck{
 	
 	public Deck(String[] ranks, String[] suits, int[] points) {
 		cards = new ArrayList<Card>();
-		for (int i = 0; i < ranks.length; i++) {
+		
+		for (int j = 0; j < suits.length; j++) {
+			for (int k = 0; k < ranks.length; k++) {
+				cards.add(new Card(ranks[k], suits[j], points[k]));
+			}
+		}
+		setSize(cards.size());
+		top = cards.size() - 1;
+		/*for (int i = 0; i < ranks.length; i++) {
 			/*Card temp = new Card(ranks[i], suits[i], points[i]);
-			cards.add(temp);*/
+			cards.add(temp);
 			
 			cards.add(new Card(ranks[i], suits[i], points[i]));
 		}
 		
-		setSize(cards.size());
+		setSize(cards.size());*/
 
 	}
    //make a Deck constructor
@@ -72,12 +80,24 @@ public class Deck{
 	   if (isEmpty())
 		   return null;
 	   else {
-		   size = size - 1;
-		   return cards.get(size);
+		   //size = size - 1;
+		   top = top - 1;
+		   return cards.get(top + 1);
+		   
 	   }
+	   
 		   
    }
    //make a dealCard() method that returns the top card
+   
+   public void resetTop() {
+	   size = cards.size();
+	   top = size - 1;
+   }
+   public int getTop() {
+	   return top;
+   }
+   
    
    public void shuffle() {
 	   Card temp = new Card();
@@ -93,6 +113,37 @@ public class Deck{
    //write a shuffle() method
    	//use Colletions.shuffle
    	//reset the top card 
+   public String cardInfo(Card c) {
+	   return c.getRank()+ " of " 
+				+ c.getSuit() + " (point value = "+ c.getPoints() + ")";
+   }
+   
+   
+   public String toString() {
+	   String statement = "";
+	   
+	   if (top == cards.size() - 1) {
+		   statement = statement + " Undealt Cards: ";
+		   for (int j = top; j >= 0 ;j--) {
+			   statement = statement + "\n" + cardInfo(cards.get(j));
+		   }
+	   }
+	   else if (!isEmpty()) {
+		   statement = statement + " Undealt Cards: ";
+		   for (int k = top - 1 ; k >= 0 ; k--) {
+			   statement = statement + "\n" + cardInfo(cards.get(k));
+		   }
+		   
+		   statement = "Dealt cards: ";
+		   for (int i = top; i >= top; i--) {
+			   statement = statement + "\n" + cardInfo(cards.get(i)); 
+				
+			}
+
+	}
+		   
+	   return statement;
+   }
 }
 
 
