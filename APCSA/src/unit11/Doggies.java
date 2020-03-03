@@ -11,22 +11,21 @@ public class Doggies
 	private int arraySize;
 	public Doggies(int size)
 	{
-		Dog[] pups =  new Dog[size];
+		pups =  new Dog[size];
 		arraySize = pups.length;
+		
 		System.out.println("Size = " + arraySize);
 
-		//pups[0] = new Dog(1, "FIRST");
-		//pups[1] = new Dog(2, "SECOND");
-		//point pups at a new arry of Dog
 		
 	}
 	
 	public void set(int spot, int age, String name)
 	{
+
 		
 		if (spot < arraySize) {
 			pups[spot] = new Dog(age, name);
-			System.out.println(spot);
+
 		}
 		
 		//put a new Dog in the array at spot 
@@ -62,6 +61,15 @@ public class Doggies
 
 	public String toString()
 	{
-		return "" + Arrays.toString(pups);
+		String pack = "";
+
+		for (int i = 0; i < pups.length; i++) {
+			pack = pack + pups[i].getName();
+			if (i != (pups.length - 1))
+				pack = pack + ", ";
+		}
+		return pack;
 	}
 }
+
+

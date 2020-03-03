@@ -16,7 +16,7 @@ public class DoggiesRunner
 		int size = keyboard.nextInt();
 		Doggies pack = new Doggies(size);
 
-		for(int i=0; i<size;i++)
+		for(int i = 0; i < size; i++)
 		{
 			System.out.print("Enter the age :: ");
 			int age = keyboard.nextInt();
@@ -28,6 +28,7 @@ public class DoggiesRunner
 		}		 
 		System.out.println("pack :: "+pack);
 		System.out.println("NAME OF OLDEST :: " + pack.getNameOfOldest());
-		//System.out.println("NAME OF YOUNGEST :: " + pack.getNameOfYoungest());		
+		System.out.println("NAME OF YOUNGEST :: " + pack.getNameOfYoungest());		
 	}		
 }
+
