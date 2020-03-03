@@ -80,12 +80,10 @@ public class Deck{
 	   if (isEmpty())
 		   return null;
 	   else {
-		   //size = size - 1;
+		   size = size - 1;
 		   top = top - 1;
-		   return cards.get(top + 1);
-		   
+		   return cards.get(size);
 	   }
-	   
 		   
    }
    //make a dealCard() method that returns the top card
@@ -122,23 +120,26 @@ public class Deck{
    public String toString() {
 	   String statement = "";
 	   
-	   if (top == cards.size() - 1) {
+	   if (size == cards.size()) {
 		   statement = statement + " Undealt Cards: ";
 		   for (int j = top; j >= 0 ;j--) {
 			   statement = statement + "\n" + cardInfo(cards.get(j));
 		   }
 	   }
 	   else if (!isEmpty()) {
-		   statement = statement + " Undealt Cards: ";
-		   for (int k = top - 1 ; k >= 0 ; k--) {
-			   statement = statement + "\n" + cardInfo(cards.get(k));
-		   }
 		   
-		   statement = "Dealt cards: ";
-		   for (int i = top; i >= top; i--) {
+		   statement = statement + "Dealt cards: ";
+		   for (int i = cards.size() - 1; i >= size; i--) {
 			   statement = statement + "\n" + cardInfo(cards.get(i)); 
 				
 			}
+		   
+		   statement = statement + "\n\nUndealt Cards: ";
+		   for (int k = top ; k >= 0 ; k--) {
+			   statement = statement + "\n" + cardInfo(cards.get(k));
+		   }
+		   
+		   
 
 	}
 		   
