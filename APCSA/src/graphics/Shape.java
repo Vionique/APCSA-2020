@@ -109,6 +109,12 @@ public class Shape
    public void setYSpd(int ySpd) {
 	   ySpeed = ySpd;
    }
+   public int getHeight() {
+	   return height;
+   }
+   public int getWidth() {
+	   return width;
+   }
    
    public String toString()
    {
