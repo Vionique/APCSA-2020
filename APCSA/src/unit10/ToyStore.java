@@ -51,7 +51,11 @@ public class ToyStore
   	}  
   	
   	public ArrayList<Toy> Count() {
-  		ArrayList<Toy> inventory = new ArrayList<Toy>();
+  		ArrayList<Toy> inventoryOne = new ArrayList<Toy>();
+  		ArrayList<Toy> inventoryEnd = new ArrayList<Toy>();
+  		inventoryEnd.add(new Toy("placeholder"));
+  		inventoryEnd.add(new Toy("placeholder"));
+  		ArrayList<Integer> remove = new ArrayList<Integer>();
   		
   		for (int i = 0; i < toyList.size(); i++) {
   			int count = 0;
@@ -60,30 +64,37 @@ public class ToyStore
   	  				count++;
   			}
   			
-  			inventory.add(new Toy("gi joe", count));
+  			inventoryOne.add(new Toy(toyList.get(i).getName(), count));
   		}
-  		//printInventory(inventory);
   		
-  		for (int j = 1; j < inventory.size(); j++){
-  			for (int k = 0; k <= j) {
-  			String compOne = inventory.get(j).getName();
-  			String compTwo = inventory.get(j - 1).getName();
-  			if (compOne.equals(compTwo)) {
-  				
+  		for (Toy t : inventoryOne) { 
+  			for (int i = 0; i < inventoryEnd.size(); i++) {
+  				if (i != 0)
+  				{
+	  				String one = inventoryEnd.get(i).getName();
+	  				String two = t.getName();
+	  				if (!(one.equals(two)))
+	  					inventoryEnd.add(i, t);
+  				}
+  					
+  				else 
+  					inventoryEnd.set(0, t);
   			}
-  			}
-  		}
-  		return inventory;
+  			
+        }
+  		inventoryEnd.remove(0); 
+  		printInventory(inventoryEnd);
+  		return inventoryEnd;
   		
   	}
   	//prints Inventory
-  	/*public void printInventory(ArrayList<Toy> inventory) {
+  	public void printInventory(ArrayList<Toy> inventory) {
   		String list = "inventory:";
 		for (Toy t : inventory) {
 			list = list + "\n" + t.getName() + " " + t.getCount();
 		}
 		System.out.println( list );
-  	}*/
+  	}
   	
   	
 	public String toString()
