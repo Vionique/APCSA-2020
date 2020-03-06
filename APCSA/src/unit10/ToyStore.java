@@ -11,7 +11,7 @@ import java.util.HashSet;
 import static java.lang.System.*;
 
 public class ToyStore
-{
+{ 
 	private ArrayList<Toy> toyList;
 
 	public ToyStore()
@@ -36,7 +36,11 @@ public class ToyStore
   		for (Toy t : Count()) {
   			if (t.getCount() > frequency) {
 
+
   				frequency = t.getCount(); 
+
+  				frequency = t.getCount();
+
   				mostFrequent = t;
   			}
   		}
