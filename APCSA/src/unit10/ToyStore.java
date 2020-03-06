@@ -36,7 +36,7 @@ public class ToyStore
   		for (Toy t : Count()) {
   			if (t.getCount() > frequency) {
 
-  				frequency = t.getCount();
+  				frequency = t.getCount(); 
   				mostFrequent = t;
   			}
   		}
