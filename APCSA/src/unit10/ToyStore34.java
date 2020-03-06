@@ -122,7 +122,7 @@ public class ToyStore34
   	
 	public String toString()
 	{
-
+		System.out.println("Gabby Kang");
 		String list = "";
 		/*for (Toy t : toyList) {
 			list = list + "\n" + t.getName() + " " + t.getCount();
