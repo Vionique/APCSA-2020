@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import static java.lang.System.*;
 
 public class ToyStore
@@ -52,9 +53,9 @@ public class ToyStore
   	
   	public ArrayList<Toy> Count() {
   		ArrayList<Toy> inventoryOne = new ArrayList<Toy>();
-  		ArrayList<Toy> inventoryEnd = new ArrayList<Toy>();
-  		inventoryEnd.add(new Toy("placeholder"));
-  		inventoryEnd.add(new Toy("placeholder"));
+  		//ArrayList<Toy> inventoryEnd = new ArrayList<Toy>();
+  		//inventoryEnd.add(new Toy("placeholder"));
+  		//inventoryEnd.add(new Toy("placeholder"));
   		ArrayList<Integer> remove = new ArrayList<Integer>();
   		
   		for (int i = 0; i < toyList.size(); i++) {
@@ -67,24 +68,33 @@ public class ToyStore
   			inventoryOne.add(new Toy(toyList.get(i).getName(), count));
   		}
   		
-  		for (Toy t : inventoryOne) { 
+  		HashSet<Toy> inventoryEnd = new HashSet(inventoryOne);
+  		/*for (Toy t : inventoryOne) { 
   			for (int i = 0; i < inventoryEnd.size(); i++) {
-  				if (i != 0)
+  				if (i > 0)
   				{
-	  				String one = inventoryEnd.get(i).getName();
+	  				String one = inventoryEnd.get(i - 1).getName();
 	  				String two = t.getName();
 	  				if (!(one.equals(two)))
 	  					inventoryEnd.add(i, t);
   				}
   					
   				else 
-  					inventoryEnd.set(0, t);
+  					inventoryEnd.set(1, inventoryOne.get(0));
   			}
   			
+  			
         }
+  		
   		inventoryEnd.remove(0); 
-  		printInventory(inventoryEnd);
-  		return inventoryEnd;
+  		System.out.println(inventoryEnd.size());
+  		//printInventory(inventoryEnd);*/
+  		ArrayList<Toy> inv = new ArrayList<Toy>();
+  		for (Toy t : inventoryEnd) {
+  			inv.add(t);
+  		}
+  		printInventory(inv);
+  		return inv;
   		
   	}
   	//prints Inventory
