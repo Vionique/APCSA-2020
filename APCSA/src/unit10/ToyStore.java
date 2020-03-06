@@ -31,7 +31,7 @@ public class ToyStore
   
   	public String getMostFrequentToy()
   	{
-  		Toy mostFrequent = null;
+  		Toy mostFrequent = null;   
   		int frequency = 0;
   		for (Toy t : Count()) {
   			if (t.getCount() > frequency) {
