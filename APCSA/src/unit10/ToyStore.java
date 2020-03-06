@@ -1,7 +1,7 @@
 package unit10;
 //(c) A+ Computer Science
 //www.apluscompsci.com
-//Name - Gabby Kang
+//Name - Gabby Kang, 34
 
 import java.util.Scanner;
 import java.util.List;
@@ -33,8 +33,9 @@ public class ToyStore
   	{
   		Toy mostFrequent = null;
   		int frequency = 0;
-  		for (Toy t : toyList) {
+  		for (Toy t : Count()) {
   			if (t.getCount() > frequency) {
+
   				frequency = t.getCount();
   				mostFrequent = t;
   			}
@@ -45,18 +46,23 @@ public class ToyStore
   	public void sortToysByCount()
   	{
   		ArrayList<Toy> stock = new ArrayList<Toy>();
+  		ArrayList<Toy> inventory = new ArrayList<Toy>();
   		stock = Count();
-  		for (int i = 0; i < stock.size(); i++) {
-  			
+  		for (int i = 1; i < stock.size(); i++) {
+  			for (int j = 0; j < i; j++) {
+  				if (stock.get(j).getCount() > stock.get(i).getCount()) {
+  					Toy temp = stock.get(j);
+  					stock.set(j, stock.get(i));
+  					stock.set(i, temp);
+  				}
+  			}
   		}
+  		printInventory(stock);
   	}  
   	
   	public ArrayList<Toy> Count() {
   		ArrayList<Toy> inventoryOne = new ArrayList<Toy>();
-  		//ArrayList<Toy> inventoryEnd = new ArrayList<Toy>();
-  		//inventoryEnd.add(new Toy("placeholder"));
-  		//inventoryEnd.add(new Toy("placeholder"));
-  		ArrayList<Integer> remove = new ArrayList<Integer>();
+  		ArrayList<Toy> inv = new ArrayList<Toy>();
   		
   		for (int i = 0; i < toyList.size(); i++) {
   			int count = 0;
@@ -67,37 +73,40 @@ public class ToyStore
   			
   			inventoryOne.add(new Toy(toyList.get(i).getName(), count));
   		}
-  		
-  		HashSet<Toy> inventoryEnd = new HashSet(inventoryOne);
-  		/*for (Toy t : inventoryOne) { 
-  			for (int i = 0; i < inventoryEnd.size(); i++) {
-  				if (i > 0)
-  				{
-	  				String one = inventoryEnd.get(i - 1).getName();
-	  				String two = t.getName();
-	  				if (!(one.equals(two)))
-	  					inventoryEnd.add(i, t);
-  				}
-  					
-  				else 
-  					inventoryEnd.set(1, inventoryOne.get(0));
-  			}
-  			
-  			
-        }
-  		
-  		inventoryEnd.remove(0); 
-  		System.out.println(inventoryEnd.size());
-  		//printInventory(inventoryEnd);*/
-  		ArrayList<Toy> inv = new ArrayList<Toy>();
-  		for (Toy t : inventoryEnd) {
-  			inv.add(t);
+  		int sizeOne = inventoryOne.size();
+  		String[] names = new String[sizeOne];
+  		Integer[] count = new Integer[sizeOne];
+
+  		for (int i = 0; i < sizeOne; i++) {
+  			names[i] = inventoryOne.get(i).getName();
+  			count[i] = inventoryOne.get(i).getCount();
   		}
-  		printInventory(inv);
+  		inv.add(new Toy(names[0], count[0]));
+  		for (int j = 2; j < names.length; j++) {
+  			if( noDuplicates(names, j)) {
+  				String a = names[j];
+  				int c = count[j];
+  				inv.add(new Toy(a, c));
+  			}
+  		}
+ 
   		return inv;
   		
   	}
-  	//prints Inventory
+  	
+  	private static boolean noDuplicates(String[] n, int index) {
+ 
+  			for (int j = 1; j < index; j++) {
+  				String one = n[index];
+  				String two = n[j];
+  				if (two.equals(one)) {
+  					return false;
+  				}
+  			}
+  		
+  		return true;
+  	}
+  	
   	public void printInventory(ArrayList<Toy> inventory) {
   		String list = "inventory:";
 		for (Toy t : inventory) {

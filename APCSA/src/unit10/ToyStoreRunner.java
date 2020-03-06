@@ -14,15 +14,17 @@ public class ToyStoreRunner
 	{
 		ToyStore toyStore = new ToyStore();
 		toyStore.loadToys("sorry");
-		//toyStore.loadToys("sorry");
+		toyStore.loadToys("sorry");
+		toyStore.loadToys("doll");
 		toyStore.loadToys("gi joe");
 		toyStore.loadToys("gi joe");
 		toyStore.loadToys("gi joe");
 		toyStore.loadToys("gi joe");
 		toyStore.loadToys("gi joe");
 		
-		System.out.println(toyStore);
+		//System.out.println(toyStore);
 		toyStore.Count();
+		toyStore.sortToysByCount();
 		System.out.println(toyStore.getMostFrequentToy());
 		
 	}
