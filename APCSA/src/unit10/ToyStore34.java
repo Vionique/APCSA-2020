@@ -10,18 +10,22 @@ import java.util.Collections;
 import java.util.HashSet;
 import static java.lang.System.*;
 
-public class ToyStore
-{ 
+public class ToyStore34
+{
 	private ArrayList<Toy> toyList;
 
-	public ToyStore()
+	public ToyStore34()
 	{
 		toyList = new ArrayList<Toy>();
 	}
 
 	public void loadToys( String toys )
 	{
-		toyList.add(new Toy(toys));
+		String[] names =  toys.split(" ");
+		for (String n : names) {
+			toyList.add(new Toy(n));
+		}
+		
 	}
   
   	public Toy getThatToy( String nm )
@@ -31,16 +35,12 @@ public class ToyStore
   
   	public String getMostFrequentToy()
   	{
-  		Toy mostFrequent = null;   
+  		Toy mostFrequent = null;
   		int frequency = 0;
   		for (Toy t : Count()) {
   			if (t.getCount() > frequency) {
 
-
-  				frequency = t.getCount(); 
-
   				frequency = t.getCount();
-
   				mostFrequent = t;
   			}
   		}
@@ -122,10 +122,16 @@ public class ToyStore
   	
 	public String toString()
 	{
+		System.out.println("Gabby Kang");
 		String list = "";
-		for (Toy t : toyList) {
+		/*for (Toy t : toyList) {
 			list = list + "\n" + t.getName() + " " + t.getCount();
+		}*/
+		for (Toy t : toyList) {
+			list = list + " " + t.getName();
 		}
 		return list;
 	}
-}
+} 
+
+
