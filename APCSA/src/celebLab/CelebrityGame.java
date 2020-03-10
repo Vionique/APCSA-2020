@@ -97,9 +97,12 @@ public class CelebrityGame
 	 */
 	public void addCelebrity(String name, String guess, String type)
 	{
-		if (validateCelebrity(name) && validateClue(name, type)) {
-			celebGameList.add(new Celebrity (name, guess));
-		}
+		if (validateCelebrity(name) && validateClue(name, type) && type.equals("Literature")) 
+			celebGameList.add(new LiteratureCelebrity (name, guess));
+		else if (validateCelebrity(name) && validateClue(name, type) && type.equals("Movie")) 
+			celebGameList.add(new MovieCelebrity (name, guess));
+		else if  (validateCelebrity(name) && validateClue(name, type))
+			celebGameList.add(new Celebrity(name,guess));
 	}
 
 	/**
@@ -124,12 +127,28 @@ public class CelebrityGame
 	 */
 	public boolean validateClue(String clue, String type)
 	{
-		clue = clue.trim();
-		if (clue.length() > 9)
+		
+		if (type.equalsIgnoreCase("literature")) {
+			String[] clues = clue.split(",");
+			for (String c : clues) {
+				if (c.length() < 10)
+					return false;
+			}
 			return true;
-		return false;
+		}
+		else if (type.equalsIgnoreCase("movie")) {
+			String[] clues = clue.split(",");
+			for (String c : clues) {
+				if (c.length() < 10)
+					return false;
+			}
+			return true;
+		}
+		else {
+			clue = clue.trim();
+			return clue.length() > 9;
+		}
 	}
-
 	/**
 	 * Accessor method for the current size of the list of celebrities
 	 * 
@@ -149,7 +168,7 @@ public class CelebrityGame
 	public String sendClue()
 	{
 		if (gameCeleb.getClue().contentEquals(""))
-			return "Nothing\nGame Completed, You Win!";
+			return "Nothing\n\nGame Completed, YOU WIN!";
 		return gameCeleb.getClue();
 	}
 
