@@ -148,7 +148,9 @@ public class CelebrityGame
 	 */
 	public String sendClue()
 	{
-		return null;
+		if (gameCeleb.getClue().contentEquals(""))
+			return "Nothing\nGame Completed, You Win!";
+		return gameCeleb.getClue();
 	}
 
 	/**
