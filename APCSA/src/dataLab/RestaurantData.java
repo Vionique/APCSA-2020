@@ -24,4 +24,11 @@ public class RestaurantData{
 	public String getPolice() {
 		return policedistrict;
 	}
+	public int getZipcode() {
+		return zipcode;
+	}
+	
+	public boolean isInNeighborhood(String n) {
+		return this.neighborhood.equalsIgnoreCase(n);
+	}
 }
