@@ -63,7 +63,7 @@ public class Contestant implements Comparable<Contestant>{
 	
 	public String toString() {
 		String output = "";
-		output = name + ":  " + runTimes.toString();
+		output = name + ":  \t" + runTimes.toString();
 		return output;
 	}
 }

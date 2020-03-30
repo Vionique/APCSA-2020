@@ -25,12 +25,20 @@ public class AgilityRunner {
 		}
 		System.out.println(testComp);
 		
+		System.out.println("SORTED (alphabetically) :: ");
+		testComp.sortAlphabet();
+		System.out.println(testComp);
 		
-		System.out.println("SORTED (descending) :: ");
-		testComp.sort();
+		System.out.println("SORTED (ascending by average) :: ");
+		testComp.sortAverage();
 		System.out.println(testComp);
 		
 		testComp.makeFailureList();
+		
+		System.out.print("\nSearching for Tex's Average :: ");
+		System.out.print(testComp.getContestantAverage("Tex"));		
+		System.out.print("\nSearching for Kirby's Average :: ");
+		System.out.println(testComp.getContestantAverage("Kirby"));
 		
 		System.out.println("\nFastest Average Time :: " + testComp.getLowestAverage());
 		System.out.println("Slowest Average Time :: " + testComp.getHighestAverage());

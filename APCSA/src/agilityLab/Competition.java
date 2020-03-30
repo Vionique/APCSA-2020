@@ -35,9 +35,32 @@ public class Competition{
 	 * 
 	 * */
 	
-	public void sort() {
-		Collections.sort(contestantList);
+	public void sortAverage() {
+		for (int i = 0; i < contestantList.size() - 1; i++) {
+			int index = i;
+			for (int j = i + 1; j < contestantList.size(); j++) {
+				if (contestantList.get(j).calcAverage() < contestantList.get(index).calcAverage())
+					index = j;
+			}
+			Contestant temp = contestantList.get(i);
+			contestantList.set(i, contestantList.get(index));
+			contestantList.set(index, temp);
+		}
 	}
+	
+	public void sortAlphabet() {
+		for (int i = 0; i < contestantList.size() - 1; i++) {
+			int index = i;
+			for (int j = i + 1; j < contestantList.size(); j++) {
+				if (contestantList.get(j).getName().compareTo(contestantList.get(index).getName()) < 0)
+					index = j;
+			}
+			Contestant temp = contestantList.get(i);
+			contestantList.set(i, contestantList.get(index));
+			contestantList.set(index, temp);
+		}
+	}
+	
 	public double getCompAverage() {
 		double sum = 0.0;
 		for (Contestant c : contestantList) {
@@ -49,14 +72,27 @@ public class Competition{
 	public double getContestantAverage(int index) {
 		return contestantList.get(index).calcAverage();
 	}
+	
 	public double getContestantAverage(String name) {
-		for (Contestant c : contestantList) {
-			if (c.getName().equals(name)) {
-				return c.calcAverage();
-			}
+		sortAlphabet();
+		int lowerIndex = 0;
+		int upperIndex = contestantList.size();
+		
+		while (lowerIndex < upperIndex) {
+			int middle = (lowerIndex + upperIndex) / 2;
+			String compare = contestantList.get(middle).getName();
+			if (name.compareTo(compare) < 0)
+				upperIndex = middle - 1;
+			else if (name.compareTo(compare) > 0)
+				lowerIndex = middle + 1;
+			else if (name.compareTo(compare) == 0)
+				return contestantList.get(middle).calcAverage();
 		}
+		
 		return -1.0;
 	}
+	
+
 	
 	public String getStudentName(int index) {
 		return contestantList.get(index).getName();
@@ -99,6 +135,7 @@ public class Competition{
 		}
 		printList(failureList, "fail");
 	}
+	
 	public void printList(ArrayList<Contestant> arr, String a) {
 		if (a.contentEquals("fail"))
 			System.out.println("FAILED ::");
