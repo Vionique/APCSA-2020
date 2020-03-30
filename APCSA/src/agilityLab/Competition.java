@@ -70,6 +70,9 @@ public class Competition{
 	}
 	
 	public double getContestantAverage(int index) {
+		sortAverage();
+		if (index >= contestantList.size())
+			return -1.0;
 		return contestantList.get(index).calcAverage();
 	}
 	
@@ -130,7 +133,7 @@ public class Competition{
 	public void makeFailureList() {
 		ArrayList<Contestant> failureList = new ArrayList<Contestant>();
 		for (Contestant c : contestantList) {
-			if (c.calcAverage() >= 40)
+			if (c.calcAverage() >= 90)
 				failureList.add(c);
 		}
 		printList(failureList, "fail");

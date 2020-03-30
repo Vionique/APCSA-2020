@@ -40,6 +40,9 @@ public class AgilityRunner {
 		System.out.print("\nSearching for Kirby's Average :: ");
 		System.out.println(testComp.getContestantAverage("Kirby"));
 		
+		System.out.print("\nFinding Second Place's Average :: ");
+		System.out.println(testComp.getContestantAverage(1));
+		
 		System.out.println("\nFastest Average Time :: " + testComp.getLowestAverage());
 		System.out.println("Slowest Average Time :: " + testComp.getHighestAverage());
 		System.out.printf("Competition Average :: %.2f", testComp.getCompAverage() );
