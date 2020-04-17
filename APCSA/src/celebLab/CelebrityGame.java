@@ -177,7 +177,7 @@ public class CelebrityGame
 	 * classes
 	 * 
 	 * @return The String answer from the current celebrity.
-	 */
+	 */ 
 	public String sendAnswer()
 	{
 		return null;

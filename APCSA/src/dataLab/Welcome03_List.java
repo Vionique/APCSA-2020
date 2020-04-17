@@ -1,7 +1,7 @@
 package dataLab;
 
 /*
- * Arrays of objects
+ * Arrays of objects 
  */
 
 import core.data.*;
