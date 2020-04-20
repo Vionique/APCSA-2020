@@ -1,4 +1,5 @@
 package elevensPartTwo;
+
 import java.awt.Point;
 import java.awt.Graphics;
 import java.awt.Dimension;
@@ -305,13 +306,14 @@ public class CardGameGUI extends JFrame implements ActionListener {
 				signalLoss();
 			}
 			repaint();
-		} else if (e.getSource().equals(restartButton)) {
+		} 
+		
+		else if (e.getSource().equals(restartButton)) {
 			board.newGame();
 			getRootPane().setDefaultButton(replaceButton);
 			winMsg.setVisible(false);
 			lossMsg.setVisible(false);
-			
-			if (!board.anotherPlayIsPossible()) {
+			if (!(board.anotherPlayIsPossible())) {
 				signalLoss();
 				lossMsg.setVisible(true);
 			}

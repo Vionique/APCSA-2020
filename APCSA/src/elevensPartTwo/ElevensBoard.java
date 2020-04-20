@@ -93,11 +93,13 @@ public class ElevensBoard extends Board {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 		if (selectedCards.size() > 1) {
 			for (int i = 0; i < selectedCards.size() - 1; i++) {
-				if (cardAt(selectedCards.get(i)).pointValue() + cardAt(selectedCards.get(i + 1)).pointValue() == 11)
-					return true;
+				for (int j = 1; j < selectedCards.size(); j++) {
+					if (cardAt(selectedCards.get(i)).pointValue() + cardAt(selectedCards.get(j)).pointValue() == 11)
+						return true;
+				}
 			}
 		}
-		return false;
+		return false; 
 		
 	}
 
@@ -115,12 +117,12 @@ public class ElevensBoard extends Board {
 		boolean hasQ = false;
 		boolean hasK = false;
 		if (selectedCards.size() > 2) {
-			for (int i = 0; i < selectedCards.get(i); i++) {
-				if (cardAt(selectedCards.get(i)).rank().equals("jack"))
+			for (int i = 0; i < selectedCards.size(); i++) {
+				if (cardAt(selectedCards.get(i)).rank().equalsIgnoreCase("jack"))
 					hasJ = true;
-				else if (cardAt(selectedCards.get(i)).rank().equals("queen"))
+				else if (cardAt(selectedCards.get(i)).rank().equalsIgnoreCase("queen"))
 					hasQ = true;
-				else if (cardAt(selectedCards.get(i)).rank().equals("king"))
+				else if (cardAt(selectedCards.get(i)).rank().equalsIgnoreCase("king"))
 					hasK = true;
 			}
 		}
