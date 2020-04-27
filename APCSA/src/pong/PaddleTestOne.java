@@ -31,3 +31,4 @@ class PaddleTestOne
 		out.println(five.equals(five));										
 	}
 }
+
