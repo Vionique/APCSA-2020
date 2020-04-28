@@ -44,17 +44,18 @@ public class Paddle extends Block
 
    public void moveUpAndDraw(Graphics window)
    {
-	   super.draw(window, Color.white);
+	   super.draw(window, Color.WHITE);
 	   setY(getY() - getSpeed());
-	   super.draw(window);
+	   super.draw(window, Color.CYAN);
+	   System.out.println("WORKS");
 
    }
 
    public void moveDownAndDraw(Graphics window)
    {
-	   super.draw(window, Color.white);
+	   super.draw(window, Color.WHITE);
 	   setY(getY() + getSpeed());
-	   super.draw(window);
+	   super.draw(window, Color.CYAN);
 
    }
 
