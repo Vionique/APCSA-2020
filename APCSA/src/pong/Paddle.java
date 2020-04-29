@@ -46,8 +46,8 @@ public class Paddle extends Block
    {
 	   super.draw(window, Color.WHITE);
 	   setY(getY() - getSpeed());
-	   super.draw(window, Color.CYAN);
-	   System.out.println("WORKS");
+	   super.draw(window, Color.BLACK);
+
 
    }
 
@@ -55,7 +55,8 @@ public class Paddle extends Block
    {
 	   super.draw(window, Color.WHITE);
 	   setY(getY() + getSpeed());
-	   super.draw(window, Color.CYAN);
+	   super.draw(window, Color.BLACK);
+
 
    }
 

@@ -6,7 +6,7 @@ package pong;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block implements Collidable
 {
 	private int xSpeed;
 	private int ySpeed;
@@ -62,7 +62,40 @@ public class Ball extends Block
 		//draw the ball at its new location
 	   super.draw(window);
    }
+   public void reset (Graphics window) {
+	   super.draw(window, Color.white);
+	   setX(300);
+	   setY(300);
+	   super.draw(window);
+   }
    
+   public boolean didCollideLeft(Object obj) {
+	   Wall w = (Wall) obj;
+	   if (this.getX() <= w.getX() + w.getWidth()) {
+		   return true;
+	   }
+		return false;
+	}
+	public boolean didCollideRight(Object obj) {
+		Wall w = (Wall) obj;
+		if (this.getX() + this.getWidth() >= w.getX())
+			return true;
+		return false;
+	}
+	public boolean didCollideTop(Object obj) {
+		Wall w = (Wall) obj;
+		if (this.getY() >= w.getY() + w.getHeight())
+			return true;
+		return false;
+	}
+	public boolean didCollideBottom(Object obj) {
+		Wall w = (Wall) obj;
+		if (this.getY() + this.getHeight() <= w.getY() + w.getHeight())
+			return true;
+		return false;
+	}
+   
+   @Override
 	public boolean equals(Object obj)
 	{
 		Ball testBall = (Ball) obj;
@@ -83,5 +116,6 @@ public class Ball extends Block
 	public String toString() {
 		return super.toString() + "  " + getxSpeed() + " " + getySpeed();
 	}
+	
 }
 

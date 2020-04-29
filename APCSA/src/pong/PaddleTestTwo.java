@@ -57,6 +57,10 @@ public class PaddleTestTwo extends Canvas implements KeyListener, Runnable
 	public void paint(Graphics window)
 	{
 		ball.moveAndDraw(window);
+		 
+		//leftPaddle.setColor(Color.cyan);
+		//rightPaddle.setColor(Color.cyan);
+		
 		leftPaddle.draw(window);
 		rightPaddle.draw(window);
 		if(!(ball.getX()>=10 && ball.getX()<=550))
