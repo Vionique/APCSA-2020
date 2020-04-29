@@ -100,6 +100,31 @@ public class Block implements Locatable
 		return false;
 	}
 
+	public boolean didCollideLeft(Object obj) {
+		   Wall w = (Wall) obj;
+		   if (this.getX() <= w.getX() + w.getWidth()) {
+			   return true;
+		   }
+			return false;
+		}
+		public boolean didCollideRight(Object obj) {
+			Wall w = (Wall) obj;
+			if (this.getX() + this.getWidth() >= w.getX())
+				return true;
+			return false;
+		}
+		public boolean didCollideTop(Object obj) {
+			Wall w = (Wall) obj;
+			if (this.getY() >= w.getY() + w.getHeight())
+				return true;
+			return false;
+		}
+		public boolean didCollideBottom(Object obj) {
+			Wall w = (Wall) obj;
+			if (this.getY() + this.getHeight() <= w.getY() + w.getHeight())
+				return true;
+			return false;
+		}
 	
 	@Override
 	public int getX() {

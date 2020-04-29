@@ -42,6 +42,12 @@ public class Ball extends Block implements Collidable
 		xSpeed = xS;
 		ySpeed = yS;
 	}
+	
+	public Ball(int x, int y, int w, int h, int xS, int yS) {
+		super (x, y, w, h);
+		xSpeed = xS;
+		ySpeed = yS;
+	}
    //add the set methods
    
 	public void setxSpeed(int x) {
@@ -64,36 +70,23 @@ public class Ball extends Block implements Collidable
    }
    public void reset (Graphics window) {
 	   super.draw(window, Color.white);
-	   setX(300);
-	   setY(300);
+	   setX(400);
+	   setY((int) (Math.random() * 500));
 	   super.draw(window);
+	   
+	   setxSpeed(-2);
+	   setySpeed(2);
+	   
+	   try {
+		   Thread.sleep(2000);
+	   }
+	   catch(InterruptedException ex){
+		   Thread.currentThread().interrupt();
+	   }
+	   
    }
    
-   public boolean didCollideLeft(Object obj) {
-	   Wall w = (Wall) obj;
-	   if (this.getX() <= w.getX() + w.getWidth()) {
-		   return true;
-	   }
-		return false;
-	}
-	public boolean didCollideRight(Object obj) {
-		Wall w = (Wall) obj;
-		if (this.getX() + this.getWidth() >= w.getX())
-			return true;
-		return false;
-	}
-	public boolean didCollideTop(Object obj) {
-		Wall w = (Wall) obj;
-		if (this.getY() >= w.getY() + w.getHeight())
-			return true;
-		return false;
-	}
-	public boolean didCollideBottom(Object obj) {
-		Wall w = (Wall) obj;
-		if (this.getY() + this.getHeight() <= w.getY() + w.getHeight())
-			return true;
-		return false;
-	}
+   
    
    @Override
 	public boolean equals(Object obj)

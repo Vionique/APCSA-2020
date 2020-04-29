@@ -18,7 +18,9 @@ public class TheGame extends JFrame
 		
 
 		Pong game = new Pong();
-
+		//PongBlinky game = new PongBlinky();
+		//PongSpeedy game = new PongSpeedy();
+		//PongInvisible game = new PongInvisible();
 		((Component)game).setFocusable(true);
 		getContentPane().add(game);
 
