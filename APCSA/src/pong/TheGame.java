@@ -17,10 +17,10 @@ public class TheGame extends JFrame
 		setSize(WIDTH,HEIGHT);
 		
 
-		Pong game = new Pong();
+		//Pong game = new Pong();
 		//PongBlinky game = new PongBlinky();
 		//PongSpeedy game = new PongSpeedy();
-		//PongInvisible game = new PongInvisible();
+		PongInvisible game = new PongInvisible();
 		((Component)game).setFocusable(true);
 		getContentPane().add(game);
 
