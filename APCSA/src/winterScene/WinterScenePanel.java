@@ -16,18 +16,26 @@ import java.util.ArrayList;
 
 public class WinterScenePanel extends JPanel implements Runnable
 {
-	private List<AbstractShape> shapes;
+	private ArrayList<AbstractShape> shapes;
 	private AbstractShape sMan;
 
 	public WinterScenePanel()
 	{
 		setVisible(true);
 		//refer shapes to a new ArrayList of AbstractShape
-
+		shapes = new ArrayList<AbstractShape>();
 		//populate the list with 50 unique snowflakes
-
+		for (int i = 0; i < 50; i++) {
+			int x = (int) (Math.random() * 801);
+			int w = (int) (Math.random() * 45) + 1;
+			int h = (int) (Math.random() * 45) + 1;
+			int xs = (int) (Math.random () * 10) - 5;
+			int ys = (int) (Math.random() * 5 ) + 1;
+			shapes.add(new FancySnowFlake(x, 30, w, h, Color.WHITE, xs, ys));
+		}
 		//instantiate a snowman
-
+		sMan = new SnowMan(400,460,240,240);
+		
 		new Thread(this).start();
 	}
 
@@ -45,7 +53,14 @@ public class WinterScenePanel extends JPanel implements Runnable
 		window.setFont(new Font("TAHOMA",Font.BOLD,18));
 		window.drawString("MAKE A WINTER SCENE!",40,40);
 
+		
 		//make the snowman appear
+		sMan.draw(window);
+		
+		for (AbstractShape a : shapes) {
+			a.draw(window);
+			a.moveAndDraw(window);
+		}
 		//make the snowflakes appear and move down the screen
 		//check to see if any of the snowflakes need to be reset to the top of the screen
 	}

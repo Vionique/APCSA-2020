@@ -74,6 +74,9 @@ public abstract class AbstractShape
    	ySpeed = ys;
    }
    
+   public void setColor(Color col) {
+	   color = col;
+   }
    public int getYSpeed()
    {
    	return ySpeed;

@@ -16,11 +16,20 @@ public class SnowMan extends AbstractShape
 
    public void draw(Graphics window)
    {
-      //add code here to make a snowman 	      	
+      //add code here to make a snowman
+	   
+	   window.fillOval(getXPos(), getYPos(), getWidth()/2, getHeight()/2);
+	   window.fillOval(getXPos() + getWidth()/8, getYPos() - getHeight()/4, getWidth()/ 3, getHeight()/3);
+	   window.fillOval(getXPos() + getWidth()/8 + getWidth()/12, getYPos() - getHeight()/4 - getHeight()/6, getWidth()/6, getHeight()/6);
    }
 
    public void moveAndDraw(Graphics window)
    {
-      draw(window);   
+	  setColor(Color.BLUE);
+      draw(window);
+      
+      setColor(Color.WHITE);
+      setXPos(getXPos() + 50);
+      draw(window);
    }
 }
