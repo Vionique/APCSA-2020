@@ -33,3 +33,4 @@ public class SnowMan extends AbstractShape
       draw(window);
    }
 }
+

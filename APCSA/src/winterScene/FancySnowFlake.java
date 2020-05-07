@@ -38,6 +38,7 @@ public class FancySnowFlake extends AbstractShape{
 		setColor(Color.WHITE);
 		setXPos(getXPos() + getXSpeed());
 		setYPos(getYPos() + getYSpeed());
+		
 		if (getXPos() > 800 || getXPos() < 0) {
 			setXPos((int) (Math.random() * 801));
 			setYPos(10);
