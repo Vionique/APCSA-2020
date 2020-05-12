@@ -29,3 +29,5 @@ public class StarFighter extends JFrame
 		StarFighter run = new StarFighter();
 	}
 }
+
+
