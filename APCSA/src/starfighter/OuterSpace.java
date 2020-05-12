@@ -38,7 +38,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//instantiate other instance variables
 		//Ship, Alien
-		ship = new Ship(400,400,20,20,1);
+		ship = new Ship(400,400,30,30,1);
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -81,6 +81,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");
+			ship.draw(graphToBack);
 		}
 		if (keys[1] == true) {
 			ship.move("RIGHT");
@@ -104,7 +105,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 
 	public void keyPressed(KeyEvent e)
-	{
+	{/*
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			keys[0] = true;
@@ -125,11 +126,19 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			keys[4] = true;
 		}
-		repaint();
+		repaint();*/
+		
+		switch(toUpperCase(e.getKeyChar()))
+		{
+			case 'H' : keys[0]=true; break;
+			case 'J' : keys[1]=true; break;
+			case 'U' : keys[2]=true; break;
+			case 'N' : keys[3]=true; break;
+		}
 	}
 
 	public void keyReleased(KeyEvent e)
-	{
+	{/*
 		if (e.getKeyCode() == KeyEvent.VK_LEFT)
 		{
 			keys[0] = false;
@@ -150,7 +159,14 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			keys[4] = false;
 		}
-		repaint();
+		repaint();*/
+		switch(toUpperCase(e.getKeyChar()))
+		{
+			case 'H' : keys[0]=false; break;
+			case 'J' : keys[1]=false; break;
+			case 'U' : keys[2]=false; break;
+			case 'N' : keys[3]=false; break;
+		}
 	}
 
 	public void keyTyped(KeyEvent e)
