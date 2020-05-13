@@ -18,8 +18,6 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private Alien alienOne;
-	private Alien alienTwo;
 	private ArrayList<Ammo> shots;
 	private ArrayList<Alien> alienList;
 
@@ -44,8 +42,20 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//Ship, Alien
 		ship = new Ship(400,400,30,30,1);
 		alienList = new ArrayList<Alien>();
-		alienList.add(new Alien(440,40,30,30,1));
-		alienList.add(new Alien(500,40,30,30,1));
+		//alienList.add(new Alien(440,40,30,30,1));
+		//alienList.add(new Alien(500,40,30,30,1));
+		for (int row = 1; row < 5; row++) { // 6, 5, 6, 5
+			if (row % 2 == 1) {
+				for (int i = 0; i < 8; i++) {
+					alienList.add(new Alien(90 * i + 45, row * 40, 30,30, (int) (Math.random() * 3) - 1));
+				}
+			}
+			else {
+				for (int i = 0; i < 7; i++) {
+					alienList.add(new Alien(90 * i + 90, row * 40, 30,30,(int) (Math.random() * 3)-1));
+				}
+			}
+		}
 
 		shots = new ArrayList<Ammo>();
 
@@ -88,8 +98,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 				if (ammo.getX() >= alienList.get(i).getX() && 
 						ammo.getX() <= alienList.get(i).getX() + alienList.get(i).getWidth()
 						&& ammo.getY() == alienList.get(i).getY() + alienList.get(i).getHeight()
-						)
+						) {
 					alienList.remove(i);
+					
+				}
 			}
 		}
 		

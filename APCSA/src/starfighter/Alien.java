@@ -40,6 +40,9 @@ public class Alien extends MovingThing
 	public Alien(int x, int y, int w, int h, int s)
 	{
 		super(x, y, w,h);
+		if (s == 0) {
+			s = 1;
+		}
 		setSpeed(s);
 		XPOS = x;
 		try
@@ -56,6 +59,7 @@ public class Alien extends MovingThing
 	public void setSpeed(int s)
 	{
 	   //add code
+		
 		speed = s;
 	}
 
