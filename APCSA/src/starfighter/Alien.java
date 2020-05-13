@@ -68,17 +68,17 @@ public class Alien extends MovingThing
 	{
 	   //add code here
 	   setX(getX() + getSpeed());
-	   if (getX() > XPOS + 20) {
+	   if (getX() > XPOS + 30) {
 		   setSpeed(-getSpeed());
 	   }
-	   if (getX() < XPOS - 20) {
+	   if (getX() < XPOS - 30) {
 		   setSpeed(-getSpeed());
 	   }
 	}
 
 	public void draw( Graphics window )
 	{
-   	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+		window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
 	}
 
 	public String toString()

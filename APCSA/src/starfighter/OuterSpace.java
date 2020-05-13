@@ -20,6 +20,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Alien alienOne;
 	private Alien alienTwo;
+	private ArrayList<Ammo> shots;
+	private ArrayList<Alien> alienList;
+
+	
 
 	/* uncomment once you are ready for this part
 	 *
@@ -39,8 +43,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//instantiate other instance variables
 		//Ship, Alien
 		ship = new Ship(400,400,30,30,1);
-		alienOne = new Alien(440,40,30,30,1);
-		alienTwo = new Alien(500,40,30,30,1);
+		alienList = new ArrayList<Alien>();
+		alienList.add(new Alien(440,40,30,30,1));
+		alienList.add(new Alien(500,40,30,30,1));
+
+		shots = new ArrayList<Ammo>();
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -76,11 +83,23 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 20, 20 );
 
 		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
+		for (Ammo ammo : shots) {
+			for (int i = 0; i < alienList.size(); i++) {
+				if (ammo.getX() >= alienList.get(i).getX() && 
+						ammo.getX() <= alienList.get(i).getX() + alienList.get(i).getWidth()
+						&& ammo.getY() == alienList.get(i).getY() + alienList.get(i).getHeight()
+						)
+					alienList.remove(i);
+			}
+		}
+		
+		for (Alien alien : alienList) {
+			alien.draw(graphToBack);
+		}
+		
 
 		
-		
+
 		
 		if(keys[0] == true)
 		{
@@ -95,12 +114,21 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (keys[3] == true) {
 			ship.move("DOWN");
 		}
+		if (keys[4] == true) {
+			
+			shots.add(new Ammo(ship.getX() + ship.getWidth()/2, ship.getY(), 1));
+			
+			
+		}
 		
-
 		//add code to move Ship, Alien, etc.
-
-		alienOne.move("");
-		alienTwo.move("");
+		
+		for (Ammo a : shots) {
+			a.moveAndDraw(graphToBack);
+		}
+		for (Alien a : alienList) {
+			a.move("");
+		}
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 
 
@@ -138,6 +166,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			case 'J' : keys[1]=true; break;
 			case 'U' : keys[2]=true; break;
 			case 'N' : keys[3]=true; break;
+			case ' ' : keys[4]=true; break;
 		}
 	}
 
@@ -170,6 +199,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			case 'J' : keys[1]=false; break;
 			case 'U' : keys[2]=false; break;
 			case 'N' : keys[3]=false; break;
+			case ' ' : keys[4]= false; break;
 		}
 	}
 
