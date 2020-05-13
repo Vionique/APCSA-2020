@@ -55,6 +55,7 @@ public class Ammo extends MovingThing
 	{
 		//add code to draw the ammo
 		window.fillRect(getX(), getY(), 5, 5);
+
 	}
 	
 	

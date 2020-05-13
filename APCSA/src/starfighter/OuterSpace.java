@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private ArrayList<Ammo> shots;
+	private Bullets shots;
 	private AlienHorde horde;
 
 	
@@ -44,7 +44,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		horde = new AlienHorde(30);
 		
 
-		shots = new ArrayList<Ammo>();
+		shots = new Bullets();
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -80,7 +80,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 20, 20 );
 
 		ship.draw(graphToBack);
-		horde.removeDeadOnes(shots);
+		horde.removeDeadOnes(shots.getList());
 		
 		horde.drawEmAll(graphToBack);
 		
@@ -110,9 +110,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		//add code to move Ship, Alien, etc.
 		
-		for (Ammo a : shots) {
-			a.moveAndDraw(graphToBack);
-		}
+		shots.moveEmAll(graphToBack);
 		horde.moveEmAll();
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 
