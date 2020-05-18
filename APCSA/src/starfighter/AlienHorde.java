@@ -46,9 +46,17 @@ public class AlienHorde
 
 	public void moveEmAll()
 	{
+		int count = (int) (Math.random() * 10);
 		for (Alien a : aliens) {
-			a.move("");
+			a.move("side");
 		}
+		
+		if (count == 0) {
+			for (Alien a : aliens) {
+				a.move("down");
+			}
+		}
+		
 	}
 
 	public void removeDeadOnes(List<Ammo> shots)
