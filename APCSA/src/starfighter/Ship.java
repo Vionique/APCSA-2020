@@ -113,4 +113,9 @@ public class Ship extends MovingThing
 	{
 		return super.toString() + getSpeed();
 	}
+
+	public String getIconTest() {
+		// TODO Auto-generated method stub
+		return "ship.jpg";
+	}
 }

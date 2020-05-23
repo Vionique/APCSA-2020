@@ -22,7 +22,7 @@ public class Instructions extends JFrame{
 		super("HELP");
 		
 		setSize(400,600);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -35,7 +35,7 @@ public class Instructions extends JFrame{
 		directions = new JLabel();
 		directions.setText("DIRECTIONS:");
 		directions.setFont(new Font("", Font.PLAIN, 20));
-		directions.setBounds(0, 25, 100, 50);
+		directions.setBounds(0, 25, 400, 50);
 		
 		directionsOne = new JLabel();
 		directionsOne.setText("1. Dodge incoming obstacles using the arrow keys\n");

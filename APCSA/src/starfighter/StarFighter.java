@@ -18,7 +18,7 @@ public class StarFighter extends JFrame
 
 		OuterSpace theGame = new OuterSpace();
 		((Component)theGame).setFocusable(true);
-
+		
 		getContentPane().add(theGame);
 
 		setVisible(true);
