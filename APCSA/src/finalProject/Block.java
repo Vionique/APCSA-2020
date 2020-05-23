@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public abstract class Block{
 	private int xPos, yPos, width, height, speed;
@@ -89,8 +91,8 @@ public abstract class Block{
 	}
 	
 	public abstract void move(String direction);
-	public abstract void moveAndDraw(Graphics window, String direction);
-	public abstract void draw(Graphics window);
+	public abstract void moveAndDraw( String direction, JPanel panel, JLabel icon);
+	public abstract void draw(JPanel panel, JLabel icon);
 	public String toString()
 	{
 		return getXPos() + " " + getYPos() + " " + getWidth() + " " + getHeight();

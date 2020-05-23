@@ -1,5 +1,7 @@
 package finalProject;
 
+import static java.lang.Character.toUpperCase;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -22,10 +24,10 @@ import starfighter.Ship;
 
 public class EndlessGame extends JFrame implements KeyListener, Runnable{
 	
-	private Ship ship;
+	private GameShip ship;
 	private JFrame frame;
 	private JPanel gamePanel;
-	private JLabel icon;
+	private JLabel shipIcon;
 	private boolean[] keys;
 	private BufferedImage back;
 	public EndlessGame() {
@@ -37,76 +39,96 @@ public class EndlessGame extends JFrame implements KeyListener, Runnable{
 		
 		
 	}
-	public EndlessGame(JFrame j) {
-		frame = j;
+
+
+	public void initGame() {
 		keys = new boolean[6];
 		
 		this.addKeyListener(this);
 		new Thread(this).start();
 		
-
-		
-		
-
-		
-	}
-
-	public void initGame() {
 		
 		setSize(800,600);
 		
 		gamePanel = new JPanel();
-		
-
-		
-		URL url = getClass().getResource("shipSmallOne.jpg");
-		Image image;
-		try {
-			image = ImageIO.read(url);
-		} catch (IOException e) {
-			e.printStackTrace();
-			image = null;
-		}
-		icon = new JLabel(new ImageIcon(image));
-		icon.setSize(100, 100);
-		icon.setBounds(100, 200, 50, 50);
-
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
-		gamePanel.add(icon);
+		
+		ship = new GameShip(100, 200, 50, 50);		
+		shipIcon = new JLabel(new ImageIcon(ship.getImage()));
+		ship.draw(gamePanel, shipIcon);
+		
+		
 		getContentPane().add(gamePanel);
-		//gamePanel.setVisible(true);
-		//ship.draw(graphToBack);
-
 		getContentPane().setBackground(Color.BLACK);
 		setVisible(true);
 	}
 	
-	public JLabel getIcon() {
-		return icon;
-	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		try
+	   	{
+	   		while(true)
+	   		{
+	   		   Thread.currentThread().sleep(5);
+	            repaint();
+	         }
+	      }catch(Exception e)
+	      {
+	      }	
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
+		if (keys[0] == true) {
+			ship.moveAndDraw("UP", gamePanel, shipIcon);
+		}
+		if (keys[1] == true) {
+			ship.moveAndDraw("LEFT", gamePanel, shipIcon);
+		}
+		if (keys[2] == true) {
+			ship.moveAndDraw("DOWN", gamePanel, shipIcon);
+		}
+		if (keys[3] == true) {
+			ship.moveAndDraw("RIGHT", gamePanel, shipIcon);
+		}
+		if (keys[4] == true) {
+			System.out.println("SPACE");
+		}
+		if (keys[5] == true) {
+			System.out.println("");
+		}
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// from OuterSpace, Starfighter Project
+
+		switch(toUpperCase(e.getKeyChar()))
+		{
+			case 'W' : keys[0]=true; break;
+			case 'A' : keys[1]=true; break;
+			case 'S' : keys[2]=true; break;
+			case 'D' : keys[3]=true; break;
+			case ' ' : keys[4]=true; break;
+		}
 		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
+		switch(toUpperCase(e.getKeyChar()))
+		{
+			case 'W' : keys[0]=false; break;
+			case 'A' : keys[1]=false; break;
+			case 'S' : keys[2]=false; break;
+			case 'D' : keys[3]=false; break;
+			case ' ' : keys[4]= false; break;
+		}
+		
+
 	}
 }
 

@@ -7,6 +7,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 
-public class Obstacle extends Ship{
+public class Obstacle extends GameShip{
 	
 }

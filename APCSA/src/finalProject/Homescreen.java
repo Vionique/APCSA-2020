@@ -155,7 +155,7 @@ public class Homescreen extends JFrame implements ActionListener{
 		if (e.getSource().equals(endlessButton)) {
 			getContentPane().remove(panel);
 			
-			EndlessGame game = new EndlessGame(this);
+			EndlessGame game = new EndlessGame();
 			//((Component)game).setFocusable(true);
 
 			gamePanel.remove(pointsLabel);
