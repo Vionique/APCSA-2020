@@ -36,7 +36,7 @@ public class Homescreen extends JFrame implements ActionListener{
 	private JButton upgradeButton;
 	
 	private JPanel gamePanel;
-	
+	private EndlessGameTwo game;
 	
 	private JButton menuButton;
 	private JLabel scoreLabel;
@@ -137,6 +137,7 @@ public class Homescreen extends JFrame implements ActionListener{
 			Instructions help = new Instructions();
 		}
 		if (e.getSource().equals(menuButton)) {
+			game.removeGameShip();
 			getContentPane().remove(gamePanel);
 			getContentPane().add(panel);
 			
@@ -155,8 +156,20 @@ public class Homescreen extends JFrame implements ActionListener{
 		if (e.getSource().equals(endlessButton)) {
 			getContentPane().remove(panel);
 			
-			EndlessGame game = new EndlessGame();
-			//((Component)game).setFocusable(true);
+			
+			gamePanel.remove(pointsLabel);
+			pointsLabel.setForeground(Color.WHITE);
+			gamePanel.add(pointsLabel);
+			gamePanel.remove(scoreLabel);
+			scoreLabel.setForeground(Color.WHITE);
+			gamePanel.add(scoreLabel);
+			gamePanel.setVisible(true);
+			
+			game = new EndlessGameTwo(this, gamePanel);
+			
+			
+			/*EndlessGame game = new EndlessGame();
+			((Component)game).setFocusable(true);
 
 			gamePanel.remove(pointsLabel);
 			pointsLabel.setForeground(Color.WHITE);
@@ -169,7 +182,7 @@ public class Homescreen extends JFrame implements ActionListener{
 			getContentPane().setBackground(Color.BLACK);
 			setVisible(true);
 			
-			gamePanel.setVisible(true);
+			gamePanel.setVisible(true);*/
 		}
 		if (e.getSource().equals(upgradeButton)) {
 			
