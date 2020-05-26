@@ -39,10 +39,11 @@ public class Homescreen extends JFrame implements ActionListener{
 	private EndlessGameTwo game;
 	
 	private JButton menuButton;
-	private JLabel scoreLabel;
-	private int score;
-	private JLabel pointsLabel;
-	private int points;
+	
+	public JLabel scoreLabel;
+	public int score;
+	public JLabel pointsLabel;
+	public int points;
 	
 	private JLabel testLabel;
 	

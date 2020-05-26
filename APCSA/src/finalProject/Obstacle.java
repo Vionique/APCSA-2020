@@ -42,15 +42,36 @@ public class Obstacle extends Block{
 	public Image getImage() {
 		return image;
 	}
+	
+	public boolean checksCollision(GameShip ship) {
+		if (ship.getXPos() + ship.getWidth() - 10 >= this.getXPos()
+				&& ship.getXPos() <= this.getXPos() + this.getWidth()) {
+			//System.out.println("checksX");
+			if (ship.getYPos() + ship.getHeight() <= this.getYPos() + this.getHeight()
+					&& ship.getYPos() + ship.getHeight() >= this.getYPos()) {
+				//System.out.println("checksY");
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	
 	@Override
 	public void move(String direction) {
 		setXPos(getXPos() - getSpeed());
 		int random = (int) (Math.random() * 2);
 		if(random == 0) {
-			setYPos(getYPos() + 1);
+			setYPos(getYPos() + 3);
 		}
 		else {
-			setYPos(getYPos() - 1);
+			setYPos(getYPos() - 3);
+		}
+		
+		if (getXPos() + getWidth() <= 0) {
+			setXPos(800);
+			setYPos((int) (Math.random() * 500));
 		}
 	}
 

@@ -26,6 +26,12 @@ public class GameShip extends Block{
 		setSpeed(5);
 	}
 	
+	public GameShip(int x, int y, int w, int h, int s) {
+		super (x, y, w, h, s);
+		setImage("shipSmallOne.jpg");
+		setSpeed(5);
+	}
+	
 	public GameShip(int x, int y, int w, int h, int s, Color col) {
 		super (x, y, w, h, s, col);
 		setImage("shipSmallOne.jpg");

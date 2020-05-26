@@ -35,6 +35,8 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	private JLabel shipIcon;
 	private boolean[] keys;
 	private BufferedImage back;
+	
+	private boolean isRunning = true;
 	public EndlessGameTwo(JFrame j, JPanel p) {
 		frame = j;
 		gamePanel = p;
@@ -48,8 +50,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		keys[6] = true;
 		
 		
-		frame.addKeyListener(this);
-		new Thread(this).start();
+		
 		
 		frame.setFocusable(true);
 		frame.requestFocusInWindow();
@@ -59,7 +60,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
 		
-		ship = new GameShip(100, 200, 50, 50);		
+		ship = new GameShip(100, 200, 50, 50, 20);		
 		shipIcon = new JLabel(new ImageIcon(ship.getImage()));
 		ship.draw(gamePanel, shipIcon);
 		
@@ -78,20 +79,22 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setVisible(true);
 		
-		
+		frame.addKeyListener(this);
+		new Thread(this).start();
 	}
 	
 	@Override
 	public void run() {
-		
-		try
+		while(isRunning)
+   		try
 	   	{
 			
-	   		while(true)
+	   		while(isRunning)
 	   		{
-	   			
-	   		   Thread.currentThread().sleep(1);
+	   			runGame();
+	   		   Thread.currentThread().sleep(100);
 	           frame.repaint();
+	           
 	           
 	           
 	         }
@@ -99,7 +102,10 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	      }catch(Exception e)
 	      {
 	    	  System.out.println("run() error");
+	    	  //runGame();
+	    	  //loseGame();
 	      }	
+		
 	}
 	
 
@@ -108,8 +114,8 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		
 		if (keys[0] == true) {
 			ship.moveAndDraw("UP", gamePanel, shipIcon);
-			obstacleTest.moveAndDraw("", gamePanel, obstacleIcon);
-			//obstacles.allObstaclesMove(gamePanel);
+
+			
 		}
 		if (keys[1] == true) {
 			ship.moveAndDraw("LEFT", gamePanel, shipIcon);
@@ -127,7 +133,10 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			System.out.println("");
 		}
 		if (keys[6] == true) {
-			obstacleTest.moveAndDraw("", gamePanel, obstacleIcon);
+			//obstacleTest.moveAndDraw("", gamePanel, obstacleIcon);
+			
+			
+			
 		}
 		
 		
@@ -166,6 +175,17 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	public void removeGameShip() {
 		gamePanel.remove(shipIcon);
 		
+	}
+	
+	public void loseGame() {
+		
+	}
+	public void runGame() {
+		obstacles.allObstaclesMove(gamePanel);
+		if (obstacles.checkAllCollisions(ship)) {
+     	   isRunning = false;
+        }
+		//obstacleTest.draw( gamePanel, obstacleIcon);
 	}
 }
 

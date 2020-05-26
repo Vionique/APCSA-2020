@@ -19,11 +19,11 @@ public class ObstaclePanel implements Runnable{
 	}
 	
 	public void makeObstacles(int num) {
-		obstacleList.add(new Obstacle(400,400,30));
-		obstacleList.add(new Obstacle(300,200,30));
-		/*for (int i = 0; i < num; i++) {
-			obstacleList.add(new Obstacle(600,(int) (Math.random() * 500), 30));
-		}*/
+		//obstacleList.add(new Obstacle(400,400,30));
+		//obstacleList.add(new Obstacle(300,200,30));
+		for (int i = 0; i < num; i++) {
+			obstacleList.add(new Obstacle((int) (Math.random() * 400) + 800,(int) (Math.random() * 500), 30));
+		}
 		for(Obstacle o : obstacleList) {
 			JLabel tempLabel =new JLabel(new ImageIcon(o.getImage()));
 			tempLabel.setBounds(o.getXPos(), o.getYPos(), 100,100);
@@ -49,6 +49,17 @@ public class ObstaclePanel implements Runnable{
 			temp.add(tempLabel);
 		}
 		return temp;
+	}
+	
+	public boolean checkAllCollisions(GameShip ship) {
+		for (int i = 0; i < iconList.size(); i++) {
+			if (obstacleList.get(i).checksCollision(ship)) {
+				obstacleList.remove(i);
+				iconList.remove(i);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
