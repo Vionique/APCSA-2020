@@ -190,5 +190,12 @@ public class Homescreen extends JFrame implements ActionListener{
 		
 	}
 	
+	public void setScorePoints(int s, int p) {
+		score = s;
+		points = p;
+		scoreLabel.setText("Score :: " + score);
+		pointsLabel.setText("Points :: " + points);
+	}
+	
 }
 

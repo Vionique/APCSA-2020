@@ -1,0 +1,70 @@
+package finalProject;
+
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class ObstaclePanel implements Runnable{
+	ArrayList<Obstacle> obstacleList;
+	ArrayList<JLabel> iconList;
+	
+	public ObstaclePanel() {
+		obstacleList = new ArrayList<Obstacle>();
+		iconList = new ArrayList<JLabel>();
+		//this.setOpaque(false);
+		//this.setLayout(null);
+		makeObstacles (5);
+	}
+	
+	public void makeObstacles(int num) {
+		obstacleList.add(new Obstacle(400,400,30));
+		obstacleList.add(new Obstacle(300,200,30));
+		/*for (int i = 0; i < num; i++) {
+			obstacleList.add(new Obstacle(600,(int) (Math.random() * 500), 30));
+		}*/
+		for(Obstacle o : obstacleList) {
+			JLabel tempLabel =new JLabel(new ImageIcon(o.getImage()));
+			tempLabel.setBounds(o.getXPos(), o.getYPos(), 100,100);
+			iconList.add(tempLabel);
+			//this.add(tempLabel);
+		}
+	}
+	public void allObstaclesMove(JPanel panel) {
+		/*for (Obstacle o : obstacleList) {
+			
+			o.moveAndDraw("",panel, new JLabel(new ImageIcon(o.getImage())));
+		}*/
+		for (int i = 0; i < obstacleList.size(); i++) {
+			obstacleList.get(i).moveAndDraw("",panel, iconList.get(i));
+		}
+	}
+	
+	public ArrayList<JLabel> getObstacles(){
+		ArrayList<JLabel> temp = new ArrayList<JLabel>();
+		for (Obstacle o : obstacleList) {
+			JLabel tempLabel =new JLabel (new ImageIcon(o.getImage()));
+			tempLabel.setLocation(o.getXPos(), o.getYPos());
+			temp.add(tempLabel);
+		}
+		return temp;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try
+	   	{
+	   		while(true)
+	   		{
+	   			
+	   		   Thread.currentThread().sleep(5);
+	           
+	           
+	         }
+	      }catch(Exception e)
+	      {
+	      }	
+	}
+}

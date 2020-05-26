@@ -25,6 +25,11 @@ import starfighter.Ship;
 public class EndlessGameTwo  implements KeyListener, Runnable{
 	
 	private GameShip ship;
+	private ObstaclePanel obstacles;
+	
+	private Obstacle obstacleTest;
+	private JLabel obstacleIcon;
+	
 	private JFrame frame;
 	private JPanel gamePanel;
 	private JLabel shipIcon;
@@ -39,7 +44,8 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 
 
 	public void initGame() {
-		keys = new boolean[6];
+		keys = new boolean[7];
+		keys[6] = true;
 		
 		
 		frame.addKeyListener(this);
@@ -57,31 +63,53 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		shipIcon = new JLabel(new ImageIcon(ship.getImage()));
 		ship.draw(gamePanel, shipIcon);
 		
+		obstacleTest = new Obstacle(600,400, 30);
+		obstacleIcon = new JLabel(new ImageIcon(obstacleTest.getImage()));
+		obstacleTest.draw(gamePanel, obstacleIcon);
 		
+		obstacles = new ObstaclePanel();
+		obstacles.allObstaclesMove(gamePanel);
+
+		/*for (JLabel o : obstacles.getObstacles()) {
+			gamePanel.add(o);
+		}*/
 		frame.getContentPane().add(gamePanel);
+		
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setVisible(true);
+		
+		
 	}
 	
 	@Override
 	public void run() {
+		
 		try
 	   	{
+			
 	   		while(true)
 	   		{
-	   		   Thread.currentThread().sleep(5);
+	   			
+	   		   Thread.currentThread().sleep(1);
 	           frame.repaint();
+	           
+	           
 	         }
+	   		
 	      }catch(Exception e)
 	      {
+	    	  System.out.println("run() error");
 	      }	
 	}
+	
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
 		if (keys[0] == true) {
 			ship.moveAndDraw("UP", gamePanel, shipIcon);
+			obstacleTest.moveAndDraw("", gamePanel, obstacleIcon);
+			//obstacles.allObstaclesMove(gamePanel);
 		}
 		if (keys[1] == true) {
 			ship.moveAndDraw("LEFT", gamePanel, shipIcon);
@@ -98,6 +126,11 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		if (keys[5] == true) {
 			System.out.println("");
 		}
+		if (keys[6] == true) {
+			obstacleTest.moveAndDraw("", gamePanel, obstacleIcon);
+		}
+		
+		
 	}
 
 	@Override
