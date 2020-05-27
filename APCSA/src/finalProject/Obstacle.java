@@ -6,6 +6,8 @@ import java.net.URL;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.ImageObserver;
+
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ public class Obstacle extends Block{
 	public Obstacle(int x, int y, int s) {
 		setPos(x, y);
 		setSize(100,100);
+		
 		setSpeed(s);
 		setImage((int)(Math.random() * 3) + 1);
 	}
@@ -27,6 +30,8 @@ public class Obstacle extends Block{
 			//image = ImageIO.read(url);
 			try {
 				image = ImageIO.read(url);
+				ImageObserver observer = null;
+				setSize(image.getWidth(observer), image.getHeight(observer));
 			} catch (IOException e) {
 				e.printStackTrace();
 				image = null;
@@ -44,7 +49,7 @@ public class Obstacle extends Block{
 	}
 	
 	public boolean checksCollision(GameShip ship) {
-		if (ship.getXPos() + ship.getWidth() - 10 >= this.getXPos()
+		if (ship.getXPos() + ship.getWidth() >= this.getXPos()
 				&& ship.getXPos() <= this.getXPos() + this.getWidth()) {
 			//System.out.println("checksX");
 			if (ship.getYPos() + ship.getHeight() <= this.getYPos() + this.getHeight()

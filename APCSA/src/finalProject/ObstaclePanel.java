@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class ObstaclePanel implements Runnable{
+public class ObstaclePanel{
 	ArrayList<Obstacle> obstacleList;
 	ArrayList<JLabel> iconList;
 	
@@ -22,7 +22,7 @@ public class ObstaclePanel implements Runnable{
 		//obstacleList.add(new Obstacle(400,400,30));
 		//obstacleList.add(new Obstacle(300,200,30));
 		for (int i = 0; i < num; i++) {
-			obstacleList.add(new Obstacle((int) (Math.random() * 400) + 800,(int) (Math.random() * 500), 30));
+			obstacleList.add(new Obstacle((int) (Math.random() * 400) + 800,(int) (Math.random() * 500), 15));
 		}
 		for(Obstacle o : obstacleList) {
 			JLabel tempLabel =new JLabel(new ImageIcon(o.getImage()));
@@ -54,28 +54,21 @@ public class ObstaclePanel implements Runnable{
 	public boolean checkAllCollisions(GameShip ship) {
 		for (int i = 0; i < iconList.size(); i++) {
 			if (obstacleList.get(i).checksCollision(ship)) {
-				obstacleList.remove(i);
-				iconList.remove(i);
+				//obstacleList.remove(i);
+				//iconList.remove(i);
 				return true;
 			}
 		}
 		return false;
 	}
 
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		try
-	   	{
-	   		while(true)
-	   		{
-	   			
-	   		   Thread.currentThread().sleep(5);
-	           
-	           
-	         }
-	      }catch(Exception e)
-	      {
-	      }	
+	public void removeAll(JPanel panel) {
+		for (int i = 0; i < obstacleList.size(); i++) {
+			panel.remove(iconList.get(i));
+		}
+		while (obstacleList.size() != 0) {
+			obstacleList.remove(0);
+		}
 	}
 }
+

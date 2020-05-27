@@ -6,6 +6,8 @@ import java.net.URL;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.ImageObserver;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -17,12 +19,12 @@ public class GameShip extends Block{
 	private ImageIcon icon;
 	public GameShip() {
 		super();
-		setImage("shipSmallOne.jpg");
+		setImage("shipSmall.jpg");
 	}
 	
 	public GameShip(int x, int y, int w, int h) {
 		super (x, y, w, h);
-		setImage("shipSmallOne.jpg");
+		setImage("shipSmall.jpg");
 		setSpeed(5);
 	}
 	
@@ -34,7 +36,7 @@ public class GameShip extends Block{
 	
 	public GameShip(int x, int y, int w, int h, int s, Color col) {
 		super (x, y, w, h, s, col);
-		setImage("shipSmallOne.jpg");
+		setImage("shipSmall.jpg");
 	}
 	
 	// from Starfighter ship class
@@ -45,6 +47,8 @@ public class GameShip extends Block{
 			//image = ImageIO.read(url);
 			try {
 				image = ImageIO.read(url);
+				ImageObserver observer = null;
+				setSize(image.getWidth(observer), image.getHeight(observer));
 			} catch (IOException e) {
 				e.printStackTrace();
 				image = null;

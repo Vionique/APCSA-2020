@@ -157,7 +157,7 @@ public class Homescreen extends JFrame implements ActionListener{
 		if (e.getSource().equals(endlessButton)) {
 			getContentPane().remove(panel);
 			
-			
+			setScorePoints(0, getPoints(), gamePanel);
 			gamePanel.remove(pointsLabel);
 			pointsLabel.setForeground(Color.WHITE);
 			gamePanel.add(pointsLabel);
@@ -191,12 +191,46 @@ public class Homescreen extends JFrame implements ActionListener{
 		
 	}
 	
-	public void setScorePoints(int s, int p) {
+	public void setScorePoints(int s, int p, JPanel panel) {
 		score = s;
 		points = p;
 		scoreLabel.setText("Score :: " + score);
 		pointsLabel.setText("Points :: " + points);
+		updateNumLabels(panel);
+	}
+	public void updateNumLabels(JPanel panel) {
+		panel.remove(scoreLabel);
+		panel.add(scoreLabel);
+		panel.remove(pointsLabel);
+		panel.add(pointsLabel);
+	}
+	public int getScore() {
+		return score;
+	}
+	public int getPoints() {
+		return points;
 	}
 	
+	
+	public void returnHome() {
+		game.removeGameShip();
+		game.removeObstacles();
+		
+		getContentPane().remove(gamePanel);
+		getContentPane().add(panel);
+		
+		
+		panel.remove(pointsLabel);
+		pointsLabel.setForeground(Color.BLACK);
+		panel.add(pointsLabel);
+		panel.remove(scoreLabel);
+		scoreLabel.setForeground(Color.BLACK);
+		panel.add(scoreLabel);
+		
+		getContentPane().setBackground(Color.WHITE);
+		setVisible(true);
+		
+		panel.setVisible(true);
+	}
 }
 
