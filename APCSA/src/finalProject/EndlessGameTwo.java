@@ -60,7 +60,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
 		
-		ship = new GameShip(100, 200, 50, 50, 20);		
+		ship = new GameShip(100, 200, 50, 50, 40);		
 		shipIcon = new JLabel(new ImageIcon(ship.getImage()));
 		ship.draw(gamePanel, shipIcon);
 		
