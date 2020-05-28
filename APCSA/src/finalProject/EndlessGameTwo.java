@@ -40,11 +40,12 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	private int count;
 	
 	private boolean isRunning = true;
-	public EndlessGameTwo(Homescreen j, JPanel p) {
+	public EndlessGameTwo(Homescreen j, JPanel p, GameShip s) {
 		frame = j;
 		gamePanel = p;
 		scoreCounter = 0;
 		count = 0;
+		ship = s;
 		initGame();
 		
 	}
@@ -52,19 +53,14 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 
 	public void initGame() {
 		keys = new boolean[6];
-
-		
-		
 		
 		frame.setFocusable(true);
 		frame.requestFocusInWindow();
-
-		
 		
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
 		
-		ship = new GameShip(100, 200, 50, 50, 40);		
+		ship.setPos(100, 200);		
 		shipIcon = new JLabel(new ImageIcon(ship.getImage()));
 		ship.draw(gamePanel, shipIcon);
 		
@@ -101,6 +97,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	           
 	           
 	         }
+
 	   		loseGame();
 	   		
 	      }catch(Exception e)
@@ -176,6 +173,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	}
 	public void removeObstacles() {
 		obstacles.removeAll(gamePanel);
+		frame.getContentPane().remove(gamePanel);
 	}
 	
 	public void loseGame() {
@@ -194,6 +192,9 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			frame.setScorePoints(frame.getScore(), frame.getPoints() + 1, gamePanel);
 		}
 		//obstacleTest.draw( gamePanel, obstacleIcon);
+	}
+	public void setRunning(boolean bool) {
+		isRunning = bool;
 	}
 }
 

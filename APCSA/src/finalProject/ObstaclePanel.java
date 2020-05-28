@@ -63,12 +63,17 @@ public class ObstaclePanel{
 	}
 
 	public void removeAll(JPanel panel) {
+
 		for (int i = 0; i < obstacleList.size(); i++) {
+			
 			panel.remove(iconList.get(i));
+			
 		}
 		while (obstacleList.size() != 0) {
 			obstacleList.remove(0);
 		}
+		
+
 	}
 }
 

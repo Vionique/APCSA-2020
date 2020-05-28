@@ -38,6 +38,8 @@ public class Homescreen extends JFrame implements ActionListener{
 	private JPanel gamePanel;
 	private EndlessGameTwo game;
 	
+	private UpgradeScreen upgrades;
+	
 	private JButton menuButton;
 	
 	public JLabel scoreLabel;
@@ -46,6 +48,8 @@ public class Homescreen extends JFrame implements ActionListener{
 	public int points;
 	
 	private JLabel testLabel;
+	
+	private GameShip ship;
 	
 	public Homescreen() {
 		super("Final Project");
@@ -58,6 +62,8 @@ public class Homescreen extends JFrame implements ActionListener{
 	
 	public void initDisplay() {
 		setSize(WINDOWWIDTH, WINDOWHEIGHT);
+		
+		ship = new GameShip(100, 200, 50, 50, 40);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -138,55 +144,50 @@ public class Homescreen extends JFrame implements ActionListener{
 			Instructions help = new Instructions();
 		}
 		if (e.getSource().equals(menuButton)) {
-			game.removeGameShip();
-			getContentPane().remove(gamePanel);
-			getContentPane().add(panel);
+			//try will only activate when clicking MenuButton from EndlessGame
+			try {
+				game.removeGameShip();
+				game.setRunning(false);
+				getContentPane().remove(gamePanel);
+			}
+			catch(Exception ex) {
+				
+			}
+			try {
+				upgrades.removePanel();
+			}
+			catch(Exception ex) {
+				System.out.println("upgrades-menu error");
+			}
 			
-			panel.remove(pointsLabel);
-			pointsLabel.setForeground(Color.BLACK);
-			panel.add(pointsLabel);
-			panel.remove(scoreLabel);
-			scoreLabel.setForeground(Color.BLACK);
-			panel.add(scoreLabel);
 			
+			
+			
+			
+			updateNumLabels(panel, Color.BLACK);
 			getContentPane().setBackground(Color.WHITE);
 			setVisible(true);
 			
+			getContentPane().add(panel);
 			panel.setVisible(true);
 		}
 		if (e.getSource().equals(endlessButton)) {
 			getContentPane().remove(panel);
 			
 			setScorePoints(0, getPoints(), gamePanel);
-			gamePanel.remove(pointsLabel);
-			pointsLabel.setForeground(Color.WHITE);
-			gamePanel.add(pointsLabel);
-			gamePanel.remove(scoreLabel);
-			scoreLabel.setForeground(Color.WHITE);
-			gamePanel.add(scoreLabel);
+			updateNumLabels(gamePanel, Color.WHITE);
+			
+			gamePanel.add(menuButton);
 			gamePanel.setVisible(true);
 			
-			game = new EndlessGameTwo(this, gamePanel);
-			
-			
-			/*EndlessGame game = new EndlessGame();
-			((Component)game).setFocusable(true);
+			game = new EndlessGameTwo(this, gamePanel, ship);
 
-			gamePanel.remove(pointsLabel);
-			pointsLabel.setForeground(Color.WHITE);
-			gamePanel.add(pointsLabel);
-			gamePanel.remove(scoreLabel);
-			scoreLabel.setForeground(Color.WHITE);
-			gamePanel.add(scoreLabel);
-			
-			getContentPane().add(gamePanel);
-			getContentPane().setBackground(Color.BLACK);
-			setVisible(true);
-			
-			gamePanel.setVisible(true);*/
 		}
 		if (e.getSource().equals(upgradeButton)) {
+			getContentPane().remove(panel);
+			getContentPane().remove(gamePanel);
 			
+			upgrades = new UpgradeScreen(this, menuButton);
 		}
 		
 	}
@@ -196,9 +197,11 @@ public class Homescreen extends JFrame implements ActionListener{
 		points = p;
 		scoreLabel.setText("Score :: " + score);
 		pointsLabel.setText("Points :: " + points);
-		updateNumLabels(panel);
+		updateNumLabels(panel, Color.WHITE);
 	}
-	public void updateNumLabels(JPanel panel) {
+	public void updateNumLabels(JPanel panel, Color col) {
+		scoreLabel.setForeground(col);
+		pointsLabel.setForeground(col);
 		panel.remove(scoreLabel);
 		panel.add(scoreLabel);
 		panel.remove(pointsLabel);
@@ -213,6 +216,7 @@ public class Homescreen extends JFrame implements ActionListener{
 	
 	
 	public void returnHome() {
+		
 		game.removeGameShip();
 		game.removeObstacles();
 		
@@ -231,6 +235,9 @@ public class Homescreen extends JFrame implements ActionListener{
 		setVisible(true);
 		
 		panel.setVisible(true);
+	}
+	public GameShip getShip() {
+		return ship;
 	}
 }
 
