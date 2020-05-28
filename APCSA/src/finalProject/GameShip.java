@@ -17,29 +17,64 @@ public class GameShip extends Block{
 
 	private Image image;
 	private ImageIcon icon;
+	
+	private int shieldTime;
+	private int shieldRecharge;
+	private int blastRadius;
+	private int blastRecharge;
+	
 	public GameShip() {
 		super();
 		setImage("shipSmall.jpg");
+		setShieldTime(0);
+		setShieldRecharge(60);
+		setBlastRadius(0);
+		setBlastRecharge(60);
+		setSpeed(5);
 	}
 	
 	public GameShip(int x, int y, int w, int h) {
 		super (x, y, w, h);
 		setImage("shipSmall.jpg");
+		setShieldTime(0);
+		setShieldRecharge(60);
+		setBlastRadius(0);
+		setBlastRecharge(60);
 		setSpeed(5);
 	}
 	
 	public GameShip(int x, int y, int w, int h, int s) {
 		super (x, y, w, h, s);
+		setShieldTime(0);
+		setShieldRecharge(60);
+		setBlastRadius(0);
+		setBlastRecharge(60);
 		setImage("shipSmall.jpg");
-		setSpeed(10);
+		setSpeed(s);
 	}
 	
 	public GameShip(int x, int y, int w, int h, int s, Color col) {
 		super (x, y, w, h, s, col);
+		setShieldTime(0);
+		setShieldRecharge(60);
+		setBlastRadius(0);
+		setBlastRecharge(60);
+		setSpeed(s);
 		setImage("shipSmall.jpg");
 	}
 	
-	// from Starfighter ship class
+	public void setShieldTime(int s) {
+		shieldTime = s;
+	}
+	public void setShieldRecharge(int s) {
+		shieldRecharge = s;
+	}
+	public void setBlastRadius(int s) {
+		blastRadius = s;
+	}
+	public void setBlastRecharge(int s) {
+		blastRecharge = s;
+	}
 	public void setImage(String imageName) {
 		try
 		{
@@ -64,6 +99,18 @@ public class GameShip extends Block{
 	public Image getImage()
 	{	
 		return image;
+	}
+	public int getShieldTime() {
+		return shieldTime;
+	}
+	public int getShieldRecharge() {
+		return shieldRecharge;
+	}
+	public int getBlastRadius() {
+		return blastRadius;
+	}
+	public int getBlastRecharge() {
+		return blastRecharge;
 	}
 	
 	@Override

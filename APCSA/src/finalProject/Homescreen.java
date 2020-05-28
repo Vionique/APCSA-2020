@@ -63,7 +63,7 @@ public class Homescreen extends JFrame implements ActionListener{
 	public void initDisplay() {
 		setSize(WINDOWWIDTH, WINDOWHEIGHT);
 		
-		ship = new GameShip(100, 200, 50, 50, 40);
+		ship = new GameShip(100, 200, 50, 50);
 		
 		panel = new JPanel();
 		panel.setLayout(null);
@@ -195,11 +195,12 @@ public class Homescreen extends JFrame implements ActionListener{
 	public void setScorePoints(int s, int p, JPanel panel) {
 		score = s;
 		points = p;
-		scoreLabel.setText("Score :: " + score);
-		pointsLabel.setText("Points :: " + points);
+		
 		updateNumLabels(panel, Color.WHITE);
 	}
 	public void updateNumLabels(JPanel panel, Color col) {
+		scoreLabel.setText("Score :: " + score);
+		pointsLabel.setText("Points :: " + points);
 		scoreLabel.setForeground(col);
 		pointsLabel.setForeground(col);
 		panel.remove(scoreLabel);
@@ -212,6 +213,9 @@ public class Homescreen extends JFrame implements ActionListener{
 	}
 	public int getPoints() {
 		return points;
+	}
+	public void setPoints(int p) {
+		points = p;
 	}
 	
 	
