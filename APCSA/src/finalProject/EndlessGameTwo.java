@@ -33,18 +33,33 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	private Homescreen frame;
 	private JPanel gamePanel;
 	private JLabel shipIcon;
+	
+	private JLabel shieldLabel;
+	private int shieldRechargeCounter;
+	private int shieldDurationCounter;
+	
+	private JLabel blastLabel;
+	private int blastRechageCounter;
+	private boolean shieldIsSelected;
+	
+	
+	
 	private boolean[] keys;
 	private BufferedImage back;
 	
 	private int scoreCounter;
-	private int count;
+	
 	
 	private boolean isRunning = true;
 	public EndlessGameTwo(Homescreen j, JPanel p, GameShip s) {
 		frame = j;
 		gamePanel = p;
+		
 		scoreCounter = 0;
-		count = 0;
+		shieldRechargeCounter = 0;
+		shieldDurationCounter = 0;
+		blastRechageCounter = 0;
+		
 		ship = s;
 		initGame();
 		
@@ -60,6 +75,15 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
 		
+		shieldLabel = new JLabel();
+		setLabelImage(shieldLabel, "selectshieldOn.png");
+		shieldLabel.setBounds(0, 515, 75, 65);
+		shieldIsSelected = true;
+		
+		blastLabel = new JLabel();
+		setLabelImage(blastLabel, "blastOn.png");
+		blastLabel.setBounds(75, 515, 75, 65);
+		
 		ship.setPos(100, 200);		
 		shipIcon = new JLabel(new ImageIcon(ship.getImage()));
 		ship.draw(gamePanel, shipIcon);
@@ -71,11 +95,9 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		obstacles = new ObstaclePanel();
 		obstacles.allObstaclesMove(gamePanel);
 
-		/*for (JLabel o : obstacles.getObstacles()) {
-			gamePanel.add(o);
-		}*/
+		gamePanel.add(shieldLabel);
+		gamePanel.add(blastLabel);
 		frame.getContentPane().add(gamePanel);
-		
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setVisible(true);
 		
@@ -91,21 +113,16 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	   		while(isRunning)
 	   		{
 	   			runGame();
-	   		   Thread.currentThread().sleep(100);
-	           frame.repaint();
-	           
-	           
-	           
-	         }
-
+	   			Thread.currentThread().sleep(100);
+	   			frame.repaint();
+	   		}
 	   		loseGame();
 	   		
-	      }catch(Exception e)
-	      {
+	      }
+   		catch(Exception e){
 	    	  System.out.println("run() error");
-	    	 
-	    	  
-	      }	
+
+   		}	
 		
 	}
 	
@@ -128,10 +145,19 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			ship.moveAndDraw("RIGHT", gamePanel, shipIcon);
 		}
 		if (keys[4] == true) {
-			System.out.println("SPACE");
+			
+			if (ship.getShieldRecharged()) {
+				setLabelImage(shieldLabel, isShieldSelected() + "shieldOff.png");
+				ship.setShield(true);
+				setLabelImage(shipIcon, "smallShipWithShield.jpg");
+				ship.setShieldRecharged(false);
+				shieldRechargeCounter = 0;
+			}
 		}
 		if (keys[5] == true) {
-			System.out.println("");
+			shieldIsSelected = !shieldIsSelected;
+			setLabelImage(shieldLabel, isShieldSelected() + "shield" + shieldAvailable() + ".png");
+			setLabelImage(blastLabel, isBlastSelected() + "blast" + blastAvailable() + ".png");
 		}
 		
 		
@@ -148,6 +174,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			case 'S' : keys[2]=true; break;
 			case 'D' : keys[3]=true; break;
 			case ' ' : keys[4]=true; break;
+			case 'E' : keys[5]=true; break;
 		}
 		
 	}
@@ -161,7 +188,8 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			case 'A' : keys[1]=false; break;
 			case 'S' : keys[2]=false; break;
 			case 'D' : keys[3]=false; break;
-			case ' ' : keys[4]= false; break;
+			case ' ' : keys[4]=false; break;
+			case 'E' : keys[5]=false; break;
 		}
 		
 
@@ -191,10 +219,67 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		if (scoreCounter % 10 == 0) {
 			frame.setScorePoints(frame.getScore(), frame.getPoints() + 1, gamePanel);
 		}
-		//obstacleTest.draw( gamePanel, obstacleIcon);
+		chargePowerUps();
+		
 	}
+	
+	public void chargePowerUps() {
+		shieldRechargeCounter++;
+		blastRechageCounter++;
+		if (shieldRechargeCounter >= ship.getShieldRecharge()) {
+			setLabelImage(shieldLabel, isShieldSelected() + "shieldOn.png");
+			ship.setShieldRecharged(true);
+		}
+		if (ship.getShieldOn()) {
+			shieldDurationCounter++;
+			if (shieldDurationCounter >= ship.getShieldTime()) {
+				ship.setShield(false);
+				setLabelImage(shipIcon, "shipSmall.jpg");
+				shieldDurationCounter = 0;
+			}
+		}
+	}
+	
+	public String isShieldSelected() {
+		if (shieldIsSelected) {
+			return "select";
+		}
+		return "";
+	}
+	public String isBlastSelected() {
+		if (shieldIsSelected) {
+			return "";
+		}
+		return "select";
+	}
+	public String shieldAvailable() {
+		if (ship.getShieldRecharged()) {
+			return "On";
+		}
+		return "Off";
+	}
+	public String blastAvailable() {
+		if (ship.getBlastRecharged()) {
+			return "On";
+		}
+		return "Off";
+	}
+	
+	
+	
+	
+	
 	public void setRunning(boolean bool) {
 		isRunning = bool;
+	}
+	public void setLabelImage(JLabel label, String str) {
+		try {
+		    Image img = ImageIO.read(getClass().getResource(str));
+		    label.setIcon(new ImageIcon(img));
+		} 
+		catch (Exception ex) {
+			System.out.println("image " + str + " error");
+		}
 	}
 }
 

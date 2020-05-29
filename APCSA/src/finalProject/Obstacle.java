@@ -49,16 +49,17 @@ public class Obstacle extends Block{
 	}
 	
 	public boolean checksCollision(GameShip ship) {
-		if (ship.getXPos() + ship.getWidth() >= this.getXPos()
-				&& ship.getXPos() <= this.getXPos() + this.getWidth()) {
-			//System.out.println("checksX");
-			if (ship.getYPos() + ship.getHeight() <= this.getYPos() + this.getHeight()
-					&& ship.getYPos() + ship.getHeight() >= this.getYPos()) {
-				//System.out.println("checksY");
-				return true;
+		if (!ship.getShieldOn()) {
+			if (ship.getXPos() + ship.getWidth() >= this.getXPos()
+					&& ship.getXPos() <= this.getXPos() + this.getWidth()) {
+				//System.out.println("checksX");
+				if (ship.getYPos() + ship.getHeight() <= this.getYPos() + this.getHeight()
+						&& ship.getYPos() + ship.getHeight() >= this.getYPos()) {
+					//System.out.println("checksY");
+					return true;
+				}
 			}
 		}
-		
 		return false;
 	}
 	

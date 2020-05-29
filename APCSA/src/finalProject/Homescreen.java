@@ -84,7 +84,7 @@ public class Homescreen extends JFrame implements ActionListener{
 		upgradeButton.addActionListener(this);
 		
 		
-		URL url = getClass().getResource("shipSmallOne.jpg");
+		URL url = getClass().getResource("shipSmall.jpg");
 		Image image;
 		try {
 			image = ImageIO.read(url);

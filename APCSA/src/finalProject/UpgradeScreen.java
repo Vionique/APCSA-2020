@@ -256,13 +256,13 @@ public class UpgradeScreen extends JPanel implements ActionListener{
 			if (e.getSource().equals(plusShieldTimeButton)) {
 				if (frame.getShip().getShieldTime() < 60) {
 					frame.getShip().setShieldTime(frame.getShip().getShieldTime() + 1);
-					frame.setPoints(frame.getPoints() + 10);
+					frame.setPoints(frame.getPoints() - 10);
 				}
 			}
 			if (e.getSource().equals(minusShieldTimeButton)) {
 				if (frame.getShip().getShieldTime() > 0) {
 					frame.getShip().setShieldTime(frame.getShip().getShieldTime() - 1);
-					frame.setPoints(frame.getPoints() - 10);
+					frame.setPoints(frame.getPoints() + 10);
 				}
 			}
 			if (e.getSource().equals(plusShieldRechargeButton)) {

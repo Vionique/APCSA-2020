@@ -20,26 +20,35 @@ public class GameShip extends Block{
 	
 	private int shieldTime;
 	private int shieldRecharge;
+	private boolean shieldRecharged;
+	private boolean shieldOn;
 	private int blastRadius;
 	private int blastRecharge;
+	private boolean blastRecharged;
 	
 	public GameShip() {
 		super();
 		setImage("shipSmall.jpg");
 		setShieldTime(0);
 		setShieldRecharge(60);
+		setShieldRecharged(true);
+		setShield(false);
 		setBlastRadius(0);
 		setBlastRecharge(60);
+		setBlastRecharged(true);
 		setSpeed(5);
 	}
 	
 	public GameShip(int x, int y, int w, int h) {
 		super (x, y, w, h);
 		setImage("shipSmall.jpg");
-		setShieldTime(0);
+		setShieldTime(20);
 		setShieldRecharge(60);
-		setBlastRadius(0);
+		setShieldRecharged(true);
+		setShield(false);
+		setBlastRadius(20);
 		setBlastRecharge(60);
+		setBlastRecharged(true);
 		setSpeed(5);
 	}
 	
@@ -47,8 +56,12 @@ public class GameShip extends Block{
 		super (x, y, w, h, s);
 		setShieldTime(0);
 		setShieldRecharge(60);
+		setShieldRecharged(true);
+		setShield(false);
 		setBlastRadius(0);
 		setBlastRecharge(60);
+		setBlastRecharged(true);
+		setSpeed(5);
 		setImage("shipSmall.jpg");
 		setSpeed(s);
 	}
@@ -57,9 +70,12 @@ public class GameShip extends Block{
 		super (x, y, w, h, s, col);
 		setShieldTime(0);
 		setShieldRecharge(60);
+		setShieldRecharged(true);
+		setShield(false);
 		setBlastRadius(0);
 		setBlastRecharge(60);
-		setSpeed(s);
+		setBlastRecharged(true);
+		setSpeed(5);
 		setImage("shipSmall.jpg");
 	}
 	
@@ -69,11 +85,20 @@ public class GameShip extends Block{
 	public void setShieldRecharge(int s) {
 		shieldRecharge = s;
 	}
+	public void setShieldRecharged(boolean bool) {
+		shieldRecharged = bool;
+	}
 	public void setBlastRadius(int s) {
 		blastRadius = s;
 	}
 	public void setBlastRecharge(int s) {
 		blastRecharge = s;
+	}
+	public void setBlastRecharged(boolean bool) {
+		blastRecharged = bool;
+	}
+	public void setShield(boolean bool) {
+		shieldOn = bool;
 	}
 	public void setImage(String imageName) {
 		try
@@ -106,11 +131,20 @@ public class GameShip extends Block{
 	public int getShieldRecharge() {
 		return shieldRecharge;
 	}
+	public boolean getShieldRecharged() {
+		return shieldRecharged;
+	}
 	public int getBlastRadius() {
 		return blastRadius;
 	}
 	public int getBlastRecharge() {
 		return blastRecharge;
+	}
+	public boolean getBlastRecharged() {
+		return blastRecharged;
+	}
+	public boolean getShieldOn() {
+		return shieldOn;
 	}
 	
 	@Override
