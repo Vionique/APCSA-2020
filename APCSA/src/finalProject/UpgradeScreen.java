@@ -234,6 +234,7 @@ public class UpgradeScreen extends JPanel implements ActionListener{
 		shieldRechargeLabel.setText("Shield Recharge Time :: " + frame.getShip().getShieldRecharge());
 		blastRadiusLabel.setText("Blast Radius :: " + frame.getShip().getBlastRadius());
 		blastRechargeLabel.setText("Blast Recharge Time :: " + frame.getShip().getBlastRecharge());
+		frame.updateNumLabels(upgradePanel, Color.BLACK);
 		
 	}
 	@Override
@@ -247,40 +248,58 @@ public class UpgradeScreen extends JPanel implements ActionListener{
 				}
 			}
 			if (e.getSource().equals(minusSpeedButton)) {
-				if (frame.getShip().getSpeed() > 1)
+				if (frame.getShip().getSpeed() > 1) {
 					frame.getShip().setSpeed(frame.getShip().getSpeed() - 1);
+					frame.setPoints(frame.getPoints() + 10);
+				}
 			}
 			if (e.getSource().equals(plusShieldTimeButton)) {
-				if (frame.getShip().getShieldTime() < 60)
+				if (frame.getShip().getShieldTime() < 60) {
 					frame.getShip().setShieldTime(frame.getShip().getShieldTime() + 1);
+					frame.setPoints(frame.getPoints() + 10);
+				}
 			}
 			if (e.getSource().equals(minusShieldTimeButton)) {
-				if (frame.getShip().getShieldTime() > 0)
+				if (frame.getShip().getShieldTime() > 0) {
 					frame.getShip().setShieldTime(frame.getShip().getShieldTime() - 1);
+					frame.setPoints(frame.getPoints() - 10);
+				}
 			}
 			if (e.getSource().equals(plusShieldRechargeButton)) {
-				if (frame.getShip().getShieldRecharge() < 60)
+				if (frame.getShip().getShieldRecharge() < 60) {
 					frame.getShip().setShieldRecharge(frame.getShip().getShieldRecharge() + 1);
+					frame.setPoints(frame.getPoints() + 10);
+				}
 			}
 			if (e.getSource().equals(minusShieldRechargeButton)) {
-				if (frame.getShip().getShieldRecharge() > 10)
+				if (frame.getShip().getShieldRecharge() > 10) {
 					frame.getShip().setShieldRecharge(frame.getShip().getShieldRecharge() - 1);
+					frame.setPoints(frame.getPoints() - 10);
+				}
 			}
 			if (e.getSource().equals(plusBlastRadiusButton)) {
-				if (frame.getShip().getBlastRadius() < 60)
+				if (frame.getShip().getBlastRadius() < 60) {
 					frame.getShip().setBlastRadius(frame.getShip().getBlastRadius() + 1);
+					frame.setPoints(frame.getPoints() - 10);
+				}
 			}
 			if (e.getSource().equals(minusBlastRadiusButton)) {
-				if (frame.getShip().getBlastRadius() > 0)
+				if (frame.getShip().getBlastRadius() > 0) {
 					frame.getShip().setBlastRadius(frame.getShip().getBlastRadius() - 1);
+					frame.setPoints(frame.getPoints() + 10);
+				}
 			}
 			if (e.getSource().equals(plusBlastRechargeButton)) {
-				if (frame.getShip().getBlastRecharge() < 60)
+				if (frame.getShip().getBlastRecharge() < 60) {
 					frame.getShip().setBlastRecharge(frame.getShip().getBlastRecharge() + 1);
+					frame.setPoints(frame.getPoints() + 10);
+				}
 			}
 			if (e.getSource().equals(minusBlastRechargeButton)) {
-				if (frame.getShip().getBlastRecharge() > 10)
+				if (frame.getShip().getBlastRecharge() > 10) {
 					frame.getShip().setBlastRecharge(frame.getShip().getBlastRecharge() - 1);
+					frame.setPoints(frame.getPoints() - 10);
+				}
 			}
 			
 			updateLabel();
