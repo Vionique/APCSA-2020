@@ -151,8 +151,9 @@ public class Homescreen extends JFrame implements ActionListener{
 				getContentPane().remove(gamePanel);
 			}
 			catch(Exception ex) {
-				
+				System.out.println("no game error");
 			}
+			
 			try {
 				upgrades.removePanel();
 			}
@@ -179,6 +180,8 @@ public class Homescreen extends JFrame implements ActionListener{
 			
 			gamePanel.add(menuButton);
 			gamePanel.setVisible(true);
+			
+			
 			
 			game = new EndlessGameTwo(this, gamePanel, ship);
 
@@ -223,6 +226,8 @@ public class Homescreen extends JFrame implements ActionListener{
 		
 		game.removeGameShip();
 		game.removeObstacles();
+		
+		
 		
 		getContentPane().remove(gamePanel);
 		getContentPane().add(panel);

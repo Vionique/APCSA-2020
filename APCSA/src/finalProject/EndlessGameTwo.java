@@ -84,8 +84,11 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		setLabelImage(blastLabel, "blastOn.png");
 		blastLabel.setBounds(75, 515, 75, 65);
 		
-		ship.setPos(100, 200);		
-		shipIcon = new JLabel(new ImageIcon(ship.getImage()));
+		
+		shipIcon = new JLabel();
+		setLabelImage(shipIcon, "shipSmall.jpg");
+		ship.setPos(100, 200);	
+		
 		ship.draw(gamePanel, shipIcon);
 		
 		//obstacleTest = new Obstacle(600,400, 30);
@@ -97,6 +100,8 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 
 		gamePanel.add(shieldLabel);
 		gamePanel.add(blastLabel);
+		gamePanel.add(shipIcon);
+		
 		frame.getContentPane().add(gamePanel);
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setVisible(true);
@@ -146,7 +151,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		}
 		if (keys[4] == true) {
 			
-			if (ship.getShieldRecharged()) {
+			if (ship.getShieldRecharged() && shieldIsSelected) {
 				setLabelImage(shieldLabel, isShieldSelected() + "shieldOff.png");
 				ship.setShield(true);
 				setLabelImage(shipIcon, "smallShipWithShield.jpg");
@@ -198,6 +203,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	public void removeGameShip() {
 		ship.setPos(800, 600);
 		gamePanel.remove(shipIcon);	
+		gamePanel.removeAll();
 	}
 	public void removeObstacles() {
 		obstacles.removeAll(gamePanel);
@@ -206,6 +212,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	
 	public void loseGame() {
 		frame.returnHome();
+		gamePanel.removeAll();
 	}
 	public void runGame() {
 		obstacles.allObstaclesMove(gamePanel);
@@ -231,11 +238,14 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			ship.setShieldRecharged(true);
 		}
 		if (ship.getShieldOn()) {
+			setLabelImage(shipIcon, "smallShipWithShield.jpg");
 			shieldDurationCounter++;
+			System.out.println(shieldDurationCounter);
 			if (shieldDurationCounter >= ship.getShieldTime()) {
 				ship.setShield(false);
 				setLabelImage(shipIcon, "shipSmall.jpg");
 				shieldDurationCounter = 0;
+				System.out.println("shipShieldOff");
 			}
 		}
 	}

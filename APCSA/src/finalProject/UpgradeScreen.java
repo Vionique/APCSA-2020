@@ -226,6 +226,7 @@ public class UpgradeScreen extends JPanel implements ActionListener{
 	}
 
 	public void removePanel() {
+		upgradePanel.setVisible(false);
 		frame.remove(upgradePanel);
 	}
 	public void updateLabel() {

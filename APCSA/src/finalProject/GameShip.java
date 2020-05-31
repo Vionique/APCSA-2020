@@ -165,10 +165,10 @@ public class GameShip extends Block{
 
 	@Override
 	public void draw(JPanel panel, JLabel icon) {
-		panel.remove(icon);
+		//panel.remove(icon);
 		
 		icon.setBounds(getXPos(), getYPos(), getWidth(), getHeight());
-		panel.add(icon);
+		//panel.add(icon);
 	}
 	@Override
 	public void moveAndDraw( String direction, JPanel panel, JLabel icon) {
