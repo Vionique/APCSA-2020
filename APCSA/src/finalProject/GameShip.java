@@ -25,6 +25,7 @@ public class GameShip extends Block{
 	private int blastRadius;
 	private int blastRecharge;
 	private boolean blastRecharged;
+	private boolean blastOn;
 	
 	public GameShip() {
 		super();
@@ -36,6 +37,7 @@ public class GameShip extends Block{
 		setBlastRadius(0);
 		setBlastRecharge(60);
 		setBlastRecharged(true);
+		setBlastOn(false);
 		setSpeed(5);
 	}
 	
@@ -49,6 +51,7 @@ public class GameShip extends Block{
 		setBlastRadius(20);
 		setBlastRecharge(60);
 		setBlastRecharged(true);
+		setBlastOn(false);
 		setSpeed(5);
 	}
 	
@@ -61,6 +64,7 @@ public class GameShip extends Block{
 		setBlastRadius(0);
 		setBlastRecharge(60);
 		setBlastRecharged(true);
+		setBlastOn(false);
 		setSpeed(5);
 		setImage("shipSmall.jpg");
 		setSpeed(s);
@@ -75,6 +79,7 @@ public class GameShip extends Block{
 		setBlastRadius(0);
 		setBlastRecharge(60);
 		setBlastRecharged(true);
+		setBlastOn(false);
 		setSpeed(5);
 		setImage("shipSmall.jpg");
 	}
@@ -99,6 +104,9 @@ public class GameShip extends Block{
 	}
 	public void setShield(boolean bool) {
 		shieldOn = bool;
+	}
+	public void setBlastOn(boolean bool) {
+		blastOn = bool;
 	}
 	public void setImage(String imageName) {
 		try
@@ -145,6 +153,13 @@ public class GameShip extends Block{
 	}
 	public boolean getShieldOn() {
 		return shieldOn;
+	}
+	public boolean getBlastOn() {
+		return blastOn;
+	}
+	
+	public void drawBlast() {
+		
 	}
 	
 	@Override

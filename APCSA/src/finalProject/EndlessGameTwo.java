@@ -39,7 +39,8 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	private int shieldDurationCounter;
 	
 	private JLabel blastLabel;
-	private int blastRechageCounter;
+	private int blastRechargeCounter;
+	private int blastDurationCounter;
 	private boolean shieldIsSelected;
 	
 	
@@ -58,7 +59,10 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		scoreCounter = 0;
 		shieldRechargeCounter = 0;
 		shieldDurationCounter = 0;
-		blastRechageCounter = 0;
+		
+		//Don't need blastDuration Counter
+		blastRechargeCounter = 0;
+		blastDurationCounter = 0;
 		
 		ship = s;
 		initGame();
@@ -158,6 +162,14 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 				ship.setShieldRecharged(false);
 				shieldRechargeCounter = 0;
 			}
+			
+			if (ship.getBlastRecharged() && !shieldIsSelected) {
+				setLabelImage(blastLabel, isBlastSelected() + "blastOff.png");
+				ship.setBlastOn(true);
+				ship.setBlastRecharged(false);
+				//ship.drawBlast();
+				blastRechargeCounter = 0;
+			}
 		}
 		if (keys[5] == true) {
 			shieldIsSelected = !shieldIsSelected;
@@ -232,7 +244,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	
 	public void chargePowerUps() {
 		shieldRechargeCounter++;
-		blastRechageCounter++;
+		blastRechargeCounter++;
 		if (shieldRechargeCounter >= ship.getShieldRecharge()) {
 			setLabelImage(shieldLabel, isShieldSelected() + "shieldOn.png");
 			ship.setShieldRecharged(true);
@@ -248,6 +260,16 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 				System.out.println("shipShieldOff");
 			}
 		}
+		
+		if (blastRechargeCounter >= ship.getBlastRecharge()) {
+			setLabelImage(blastLabel, isBlastSelected() + "blastOn.png");
+			ship.setBlastRecharged(true);
+		}
+		/*if (ship.getBlastOn()) {
+			blastDurationCounter++;
+			System.out.println(blastDurationCounter);
+			if (blastDurationCounter >= ship.getBlast)
+		}*/
 	}
 	
 	public String isShieldSelected() {
