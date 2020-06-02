@@ -105,7 +105,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		//obstacleIcon = new JLabel(new ImageIcon(obstacleTest.getImage()));
 		//obstacleTest.draw(gamePanel, obstacleIcon);
 		
-		obstacles = new ObstaclePanel();
+		obstacles = new ObstaclePanel(this);
 		obstacles.allObstaclesMove(gamePanel);
 
 		gamePanel.add(shieldLabel);
@@ -281,7 +281,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			ship.setBlastRecharged(true);
 		}
 		
-		if (blastRechargeCounter >= 10) {
+		if (blastRechargeCounter >= 7) {
 			usingBlastLabel.setVisible(false);
 		}
 		/*if (ship.getBlastOn()) {
@@ -346,5 +346,10 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	public JFrame getFrame() {
 		return frame;
 	}
+	
+	public void callRepaint() {
+		frame.repaint();
+	}
+
 }
 

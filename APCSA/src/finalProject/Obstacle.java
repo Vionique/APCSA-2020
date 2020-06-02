@@ -9,43 +9,77 @@ import java.awt.Image;
 import java.awt.image.ImageObserver;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Obstacle extends Block{
 
 	Image image;
+	boolean isExploded;
 	public Obstacle(int x, int y, int s) {
 		setPos(x, y);
 		setSize(100,100);
+		
+		setExploded(false);
+		
 		
 		setSpeed(s);
 		setImage((int)(Math.random() * 3) + 1);
 	}
 
 	public void setImage(int i) {
-		try
-		{
-			URL url = getClass().getResource("obstacle"+i+".png");
-			//image = ImageIO.read(url);
-			try {
-				image = ImageIO.read(url);
-				ImageObserver observer = null;
-				setSize(image.getWidth(observer), image.getHeight(observer));
-			} catch (IOException e) {
-				e.printStackTrace();
-				image = null;
+		if (i == 4) {
+			try
+			{
+				URL url = getClass().getResource("explode.png");
+				//image = ImageIO.read(url);
+				try {
+					image = ImageIO.read(url);
+					ImageObserver observer = null;
+					setSize(image.getWidth(observer), image.getHeight(observer));
+				} catch (IOException e) {
+					e.printStackTrace();
+					image = null;
+				}
+				setExploded(true);
+			}
+			catch(Exception e)
+			{
+				//feel free to do something here
+				System.out.println("Error");
 			}
 		}
-		catch(Exception e)
-		{
-			//feel free to do something here
-			System.out.println("Error");
+		else {
+			try
+			{
+				URL url = getClass().getResource("obstacle"+i+".png");
+				//image = ImageIO.read(url);
+				try {
+					image = ImageIO.read(url);
+					ImageObserver observer = null;
+					setSize(image.getWidth(observer), image.getHeight(observer));
+				} catch (IOException e) {
+					e.printStackTrace();
+					image = null;
+				}
+			}
+			catch(Exception e)
+			{
+				//feel free to do something here
+				System.out.println("Error");
+			}
 		}
 	}
 	
+	public void setExploded(boolean b) {
+		isExploded = b;
+	}
 	public Image getImage() {
 		return image;
+	}
+	public boolean getExploded() {
+		return isExploded;
 	}
 	
 	public boolean checksCollision(GameShip ship) {
@@ -56,7 +90,9 @@ public class Obstacle extends Block{
 				if (ship.getYPos() + ship.getHeight() <= this.getYPos() + this.getHeight()
 						&& ship.getYPos() + ship.getHeight() >= this.getYPos()) {
 					//System.out.println("checksY");
-					return true;
+					if (!isExploded)
+						return true;
+
 				}
 			}
 		}
@@ -86,6 +122,8 @@ public class Obstacle extends Block{
 		}
 		
 		if (getXPos() + getWidth() <= 0) {
+			setImage((int) (Math.random() * 3) + 1);
+			setExploded(false);
 			setXPos(800);
 			setYPos((int) (Math.random() * 500));
 		}

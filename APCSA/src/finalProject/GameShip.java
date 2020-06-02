@@ -31,59 +31,22 @@ public class GameShip extends Block{
 	
 	public GameShip() {
 		super();
-		setImage("shipSmall.jpg");
-		setShieldTime(0);
-		setShieldRecharge(60);
-		setShieldRecharged(true);
-		setShield(false);
-		setBlastRadius(0);
-		setBlastRecharge(60);
-		setBlastRecharged(true);
-		setBlastOn(false);
-		setSpeed(5);
+		setDefaults();
 	}
 	
 	public GameShip(int x, int y, int w, int h) {
 		super (x, y, w, h);
-		setImage("shipSmall.jpg");
-		setShieldTime(20);
-		setShieldRecharge(60);
-		setShieldRecharged(true);
-		setShield(false);
-		setBlastRadius(60);
-		setBlastRecharge(0);
-		setBlastRecharged(true);
-		setBlastOn(false);
-		setSpeed(5);
+		setDefaults();
 	}
 	
 	public GameShip(int x, int y, int w, int h, int s) {
 		super (x, y, w, h, s);
-		setShieldTime(0);
-		setShieldRecharge(60);
-		setShieldRecharged(true);
-		setShield(false);
-		setBlastRadius(0);
-		setBlastRecharge(60);
-		setBlastRecharged(true);
-		setBlastOn(false);
-		setSpeed(5);
-		setImage("shipSmall.jpg");
-		setSpeed(s);
+		setDefaults();
 	}
 	
 	public GameShip(int x, int y, int w, int h, int s, Color col) {
 		super (x, y, w, h, s, col);
-		setShieldTime(0);
-		setShieldRecharge(60);
-		setShieldRecharged(true);
-		setShield(false);
-		setBlastRadius(0);
-		setBlastRecharge(60);
-		setBlastRecharged(true);
-		setBlastOn(false);
-		setSpeed(5);
-		setImage("shipSmall.jpg");
+		setDefaults();
 	}
 	
 	public void setShieldTime(int s) {
@@ -129,6 +92,18 @@ public class GameShip extends Block{
 			//feel free to do something here
 			System.out.println("Error");
 		}
+	}
+	public void setDefaults() {
+		setImage("shipSmall.jpg");
+		setShieldTime(20);
+		setShieldRecharge(60);
+		setShieldRecharged(true);
+		setShield(false);
+		setBlastRadius(30);
+		setBlastRecharge(0);
+		setBlastRecharged(true);
+		setBlastOn(false);
+		setSpeed(7);
 	}
 	
 	public Image getImage()
