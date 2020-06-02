@@ -10,6 +10,7 @@ import java.awt.image.ImageObserver;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -17,6 +18,7 @@ public class GameShip extends Block{
 
 	private Image image;
 	private ImageIcon icon;
+	private Thread animationThread;
 	
 	private int shieldTime;
 	private int shieldRecharge;
@@ -48,8 +50,8 @@ public class GameShip extends Block{
 		setShieldRecharge(60);
 		setShieldRecharged(true);
 		setShield(false);
-		setBlastRadius(20);
-		setBlastRecharge(60);
+		setBlastRadius(60);
+		setBlastRecharge(0);
 		setBlastRecharged(true);
 		setBlastOn(false);
 		setSpeed(5);
@@ -158,9 +160,25 @@ public class GameShip extends Block{
 		return blastOn;
 	}
 	
-	public void drawBlast() {
-		
-	}
+	/*public void drawBlast(EndlessGameTwo game) {
+		animationThread = new Thread (this, "animation");
+		frame = game.getFrame();
+		animationThread.start();
+		for (int i = 10; i <= getBlastRadius(); i += 10) {
+			game.usingBlastLabel.setVisible(true);
+			game.setLabelImage(game.usingBlastLabel, "blast" + i + ".png");
+			game.usingBlastLabel.setBounds(getXPos() - getWidth() / 2, getYPos()- getHeight()/2
+					, i * 2, i * 2);
+			System.out.println("blast" + i);
+			try {
+				animationThread.sleep(200);
+				System.out.println("animationThread");
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}*/
 	
 	@Override
 	public void move(String direction) {
@@ -191,7 +209,7 @@ public class GameShip extends Block{
 		move(direction);
 		draw(panel, icon);
 	}
-	
+
 }
 
 

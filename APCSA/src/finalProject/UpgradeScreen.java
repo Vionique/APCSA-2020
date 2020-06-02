@@ -245,7 +245,7 @@ public class UpgradeScreen extends JPanel implements ActionListener{
 			if (e.getSource().equals(plusSpeedButton)) {
 				if (frame.getShip().getSpeed() < 40) {
 					frame.getShip().setSpeed(frame.getShip().getSpeed() + 1);
-					frame.setPoints(frame.getPoints() - 10);
+					frame.setPoints(frame.getPoints() - 30);
 				}
 			}
 			if (e.getSource().equals(minusSpeedButton)) {
@@ -280,14 +280,14 @@ public class UpgradeScreen extends JPanel implements ActionListener{
 			}
 			if (e.getSource().equals(plusBlastRadiusButton)) {
 				if (frame.getShip().getBlastRadius() < 60) {
-					frame.getShip().setBlastRadius(frame.getShip().getBlastRadius() + 1);
-					frame.setPoints(frame.getPoints() - 10);
+					frame.getShip().setBlastRadius(frame.getShip().getBlastRadius() + 10);
+					frame.setPoints(frame.getPoints() - 100);
 				}
 			}
 			if (e.getSource().equals(minusBlastRadiusButton)) {
 				if (frame.getShip().getBlastRadius() > 0) {
-					frame.getShip().setBlastRadius(frame.getShip().getBlastRadius() - 1);
-					frame.setPoints(frame.getPoints() + 10);
+					frame.getShip().setBlastRadius(frame.getShip().getBlastRadius() - 10);
+					frame.setPoints(frame.getPoints() + 100);
 				}
 			}
 			if (e.getSource().equals(plusBlastRechargeButton)) {

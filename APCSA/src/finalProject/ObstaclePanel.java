@@ -1,7 +1,9 @@
 package finalProject;
 
+import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -74,6 +76,41 @@ public class ObstaclePanel{
 		}
 		
 
+	}
+	public void checkAllBlasts(JLabel blastIcon) {
+		for (int i = 0; i < obstacleList.size(); i++) {
+			if (obstacleList.get(i).checksBlast(blastIcon)) {
+				try {
+				    Image img = ImageIO.read(getClass().getResource("explode.png"));
+				    iconList.get(i).setIcon(new ImageIcon(img));
+				} 
+				catch (Exception ex) {
+					System.out.println("image " + "explode.png" + " error");
+				}
+				repaint();
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				/*obstacleList.remove(i);
+				iconList.remove(i);
+				obstacleList.add(new Obstacle((int) (Math.random() * 400) + 800,(int) (Math.random() * 500), 15));
+				
+				iconList.add(new JLabel(new ImageIcon(obstacleList.get(obstacleList.size() - 1).getImage())));
+				iconList.get(iconList.size() - 1).setBounds(obstacleList.get(obstacleList.size() - 1).getXPos(), 
+						obstacleList.get(obstacleList.size() - 1).getYPos(), 
+						100, 100);*/
+				
+		
+				obstacleList.get(i).setPos((int) (Math.random() * 400) + 800,(int) (Math.random() * 500));
+				iconList.get(i).setBounds(obstacleList.get(i).getXPos(), obstacleList.get(i).getYPos(), iconList.get(i).getWidth(), iconList.get(i).getHeight());
+				
+		
+				
+			}
+		}
 	}
 }
 

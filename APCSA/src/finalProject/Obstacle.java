@@ -62,6 +62,16 @@ public class Obstacle extends Block{
 		}
 		return false;
 	}
+	public boolean checksBlast(JLabel blastIcon) {
+		if (blastIcon.getX() + blastIcon.getWidth() >= this.getXPos() && blastIcon.getX() <= this.getXPos() + this.getWidth()) {
+			if (blastIcon.getY() + blastIcon.getHeight() >= this.getYPos() 
+			&& blastIcon.getY() <= this.getYPos()+this.getHeight()) {
+				System.out.println("recognize blast");
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	@Override

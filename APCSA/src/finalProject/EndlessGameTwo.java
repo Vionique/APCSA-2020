@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -39,6 +40,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	private int shieldDurationCounter;
 	
 	private JLabel blastLabel;
+	public JLabel usingBlastLabel;
 	private int blastRechargeCounter;
 	private int blastDurationCounter;
 	private boolean shieldIsSelected;
@@ -93,6 +95,10 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		setLabelImage(shipIcon, "shipSmall.jpg");
 		ship.setPos(100, 200);	
 		
+		usingBlastLabel = new JLabel();
+		setLabelImage(usingBlastLabel, "blast" + ship.getBlastRadius() + ".png");
+		usingBlastLabel.setVisible(false);
+		
 		ship.draw(gamePanel, shipIcon);
 		
 		//obstacleTest = new Obstacle(600,400, 30);
@@ -104,6 +110,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 
 		gamePanel.add(shieldLabel);
 		gamePanel.add(blastLabel);
+		gamePanel.add(usingBlastLabel);
 		gamePanel.add(shipIcon);
 		
 		frame.getContentPane().add(gamePanel);
@@ -167,8 +174,16 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 				setLabelImage(blastLabel, isBlastSelected() + "blastOff.png");
 				ship.setBlastOn(true);
 				ship.setBlastRecharged(false);
-				//ship.drawBlast();
+				//
+				//ship.drawBlast(this);
 				blastRechargeCounter = 0;
+				
+				for (int i = 10; i <= ship.getBlastRadius(); i += 10) {
+					blastAnimation(i);
+					
+				}
+				
+				
 			}
 		}
 		if (keys[5] == true) {
@@ -265,12 +280,17 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 			setLabelImage(blastLabel, isBlastSelected() + "blastOn.png");
 			ship.setBlastRecharged(true);
 		}
+		
+		if (blastRechargeCounter >= 10) {
+			usingBlastLabel.setVisible(false);
+		}
 		/*if (ship.getBlastOn()) {
 			blastDurationCounter++;
 			System.out.println(blastDurationCounter);
 			if (blastDurationCounter >= ship.getBlast)
 		}*/
 	}
+	
 	
 	public String isShieldSelected() {
 		if (shieldIsSelected) {
@@ -312,6 +332,19 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 		catch (Exception ex) {
 			System.out.println("image " + str + " error");
 		}
+	}
+	public void blastAnimation(int i) {
+		usingBlastLabel.setVisible(true);
+		setLabelImage(usingBlastLabel, "blast" + i + ".png");
+		usingBlastLabel.setBounds(ship.getXPos() + ship.getWidth()/2 - i, ship.getYPos() + ship.getHeight()/2 - i
+					, i * 2, i * 2);
+		System.out.println("blast" + i);
+		obstacles.checkAllBlasts(usingBlastLabel); 
+		frame.repaint();
+	}
+	
+	public JFrame getFrame() {
+		return frame;
 	}
 }
 
