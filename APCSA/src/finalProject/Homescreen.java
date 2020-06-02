@@ -49,6 +49,9 @@ public class Homescreen extends JFrame implements ActionListener{
 	private JLabel highScoreLabel;
 	public int highScore;
 	
+	private JLabel titleLabel;
+	private JLabel nameLabel;
+	
 	private JLabel testLabel;
 	
 	private GameShip ship;
@@ -125,6 +128,14 @@ public class Homescreen extends JFrame implements ActionListener{
 		highScoreLabel.setForeground(Color.BLACK);
 		highScoreLabel.setBounds(0, 550, 100, 25);
 		
+		titleLabel = new JLabel();
+		titleLabel.setText("APCSA Final Project - Dodger");
+		titleLabel.setBounds(300, 0, 200, 25);
+		
+		nameLabel = new JLabel();
+		nameLabel.setText("Gabby Kang");
+		nameLabel.setBounds(350, 30, 100, 25);
+		
 		gamePanel = new JPanel();
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
@@ -139,6 +150,8 @@ public class Homescreen extends JFrame implements ActionListener{
 		panel.add(scoreLabel);
 		panel.add(pointsLabel);
 		panel.add(highScoreLabel);
+		panel.add(titleLabel);
+		panel.add(nameLabel);
 		//panel.add(testLabel);
 		
 		getContentPane().add(panel);
