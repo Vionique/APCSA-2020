@@ -46,6 +46,8 @@ public class Homescreen extends JFrame implements ActionListener{
 	public int score;
 	public JLabel pointsLabel;
 	public int points;
+	private JLabel highScoreLabel;
+	public int highScore;
 	
 	private JLabel testLabel;
 	
@@ -117,6 +119,12 @@ public class Homescreen extends JFrame implements ActionListener{
 		pointsLabel.setForeground(Color.BLACK);
 		pointsLabel.setBounds(0, 25, 100, 25);
 		
+		highScoreLabel = new JLabel();
+		highScore = 0;
+		highScoreLabel.setText("High Score :: " + highScore);
+		highScoreLabel.setForeground(Color.BLACK);
+		highScoreLabel.setBounds(0, 550, 100, 25);
+		
 		gamePanel = new JPanel();
 		gamePanel.setLayout(null);
 		gamePanel.setOpaque(false);
@@ -130,6 +138,7 @@ public class Homescreen extends JFrame implements ActionListener{
 		panel.add(upgradeButton);
 		panel.add(scoreLabel);
 		panel.add(pointsLabel);
+		panel.add(highScoreLabel);
 		//panel.add(testLabel);
 		
 		getContentPane().add(panel);
@@ -200,6 +209,13 @@ public class Homescreen extends JFrame implements ActionListener{
 		points = p;
 		
 		updateNumLabels(panel, Color.WHITE);
+	}
+	
+	public void setHighScore(int s) {
+		if (s > highScore) {
+			highScore = s;
+		}
+		highScoreLabel.setText("High Score :: " + highScore);
 	}
 	public void updateNumLabels(JPanel panel, Color col) {
 		scoreLabel.setText("Score :: " + score);

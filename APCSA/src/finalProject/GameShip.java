@@ -99,7 +99,7 @@ public class GameShip extends Block{
 		setShieldRecharge(60);
 		setShieldRecharged(true);
 		setShield(false);
-		setBlastRadius(30);
+		setBlastRadius(100);
 		setBlastRecharge(0);
 		setBlastRecharged(true);
 		setBlastOn(false);

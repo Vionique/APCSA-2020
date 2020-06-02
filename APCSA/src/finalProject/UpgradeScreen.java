@@ -285,13 +285,13 @@ public class UpgradeScreen extends JPanel implements ActionListener{
 				}
 			}
 			if (e.getSource().equals(minusBlastRadiusButton)) {
-				if (frame.getShip().getBlastRadius() > 0) {
+				if (frame.getShip().getBlastRadius() > 20) {
 					frame.getShip().setBlastRadius(frame.getShip().getBlastRadius() - 10);
 					frame.setPoints(frame.getPoints() + 100);
 				}
 			}
 			if (e.getSource().equals(plusBlastRechargeButton)) {
-				if (frame.getShip().getBlastRecharge() < 60) {
+				if (frame.getShip().getBlastRecharge() < 100) {
 					frame.getShip().setBlastRecharge(frame.getShip().getBlastRecharge() + 1);
 					frame.setPoints(frame.getPoints() + 10);
 				}

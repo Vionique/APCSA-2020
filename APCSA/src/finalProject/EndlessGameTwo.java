@@ -240,6 +240,7 @@ public class EndlessGameTwo  implements KeyListener, Runnable{
 	public void loseGame() {
 		frame.returnHome();
 		gamePanel.removeAll();
+		frame.setHighScore(scoreCounter / 3);
 	}
 	public void runGame() {
 		obstacles.allObstaclesMove(gamePanel);
