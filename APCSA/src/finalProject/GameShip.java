@@ -96,11 +96,11 @@ public class GameShip extends Block{
 	public void setDefaults() {
 		setImage("shipSmall.jpg");
 		setShieldTime(20);
-		setShieldRecharge(60);
+		setShieldRecharge(20);
 		setShieldRecharged(true);
 		setShield(false);
 		setBlastRadius(100);
-		setBlastRecharge(0);
+		setBlastRecharge(20);
 		setBlastRecharged(true);
 		setBlastOn(false);
 		setSpeed(7);
